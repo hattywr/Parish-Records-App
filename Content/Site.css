@@ -1,21 +1,198 @@
-﻿/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    margin-top: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
+﻿#container {
+    width: 100%;
+    height: 100%;
+    max-height: 100em;
+    margin: 0px auto;
+    border: 2px solid black;
+    color: aquamarine;
+    background-color: hotpink;
+    overflow: auto;
 }
 
-/* Set widths on the form inputs since otherwise they're 100% wide */
-input,
-select,
-textarea {
-    max-width: 280px;
+#header_top {
+    width: 100%;
+    height: 8em;
+    background-color: royalblue;
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-    .body-content {
-        padding: 0;
+#navbar {
+    width: 100%;
+    height: 60%;
+    background-color: lightskyblue;
+    border: 2px solid black;
+    border-bottom: none
+}
+
+#under_navbar {
+    width: 100%;
+    height: 40%;
+    background-color: lightgray;
+    border: 2px solid black;
+    color: black;
+    font-size: medium;
+    align-content: center
+}
+
+    #under_navbar p {
+        color: black;
+        margin-top: .5em;
+        font-weight: 800;
+        font-size: larger;
+        padding-left: .4em;
+        font-family: ui-serif;
     }
+
+#main {
+    display: flex;
+    width: 100%;
+    max-height: fit-content;
+    min-height: 10em;
+    background-color: royalblue
+}
+
+.mainleft {
+    color: black;
+    float: left;
+    width: 15%;
+    height: inherit;
+    background-color: navajowhite;
+    border: 2px solid black;
+    border-bottom: none;
+    border-top: none;
+    list-style: none
+}
+
+    .mainleft ul {
+        list-style: none
+    }
+
+        .mainleft ul li {
+            text-align: center
+        }
+
+            .mainleft ul li p {
+                color: black;
+                text-align: center;
+                font-size: large;
+                font-weight: bolder;
+                margin-bottom: -1em;
+                font-family: ui-serif;
+            }
+
+            .mainleft ul li a {
+                color: blue;
+            }
+
+                .mainleft ul li a:hover {
+                    color: red;
+                }
+
+
+.maincenter {
+    color: black;
+    float: none;
+    width: 70%;
+    min-height: 10em;
+    background-color: white;
+    border-bottom: none;
+    padding-bottom: 1em;
+}
+
+.mainright {
+    float: right;
+    width: 15%;
+    height: inherit;
+    background-color: navajowhite;
+    border: 2px solid black;
+    border-top: none;
+    border-bottom: none
+}
+
+#footer {
+    width: 100%;
+    height: 5em;
+    background-color: lightskyblue;
+    border: 2px solid black;
+    border-radius: 0px 0px 10px 10px
+}
+
+.contents_table {
+    width: 90%;
+    margin: auto;
+    margin-top: 1em;
+    border: .2em solid black;
+    border-collapse: separate;
+    border-radius: 15px;
+    border-spacing: 3px;
+}
+
+.table_title {
+    text-align: center;
+    font-size: larger;
+    font-weight: 600
+}
+
+.content_row {
+    text-align: center
+}
+
+.audio_table_row {
+    text-align: center;
+}
+
+.title_cell {
+    border: 2px;
+    border-color: royalblue;
+    border-style: solid;
+    border-radius: 15px;
+}
+
+.content_cell {
+    width: 50%;
+    border: 2px;
+    border-style: solid;
+    border-color: royalblue;
+    border-radius: 10px;
+    padding: 3px;
+    font-weight: 600;
+}
+
+.button_style {
+    width: 8em;
+    background-color: darkgreen;
+    color: revert;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 15px
+}
+
+.sermon_audio_player {
+    height: 2em;
+    width: 35em
+}
+
+.image_viewer {
+    width: auto;
+    height: auto;
+    max-height: 12em;
+}
+
+
+.textbox {
+    width: -webkit-fill-available;
+    height: 2.2em;
+    border: 2px solid black;
+    border-radius: 3em;
+    text-align: center;
+}
+
+.login_button {
+    width: -webkit-fill-available;
+    height: 2.2em;
+    border-radius: 3em;
+    text-align: center;
+    font-size: large;
+    color: white;
+    font-weight: 800;
+    background-color: darkgreen
 }

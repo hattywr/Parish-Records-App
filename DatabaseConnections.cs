@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.IO;
-
 using Newtonsoft.Json.Linq;
 
 
@@ -29,27 +28,31 @@ namespace WebApplication1
             connection = new SqlConnection(defaultConnectionString.ToString()); 
         }
 
-        public void getRecord()
+        public bool checkUser(string username)
         {
+            bool found = false;
             try
             {
-                // Open the connection
                 connection.Open();
+                string query = $"select * from BVMUsers x where x.userName = '{username.ToLower()}'";
 
-                // The connection is open, you can perform database operations here
-
-                // Example: Execute a SQL command
-                using (SqlCommand command = new SqlCommand("SELECT * FROM BVMFamilies", connection))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            // Process the data retrieved from the database
-                            Console.WriteLine(reader["fathName"].ToString());
+                            string user = reader["username"].ToString();
+                            if (user != null)
+                            {
+                                found = true;
+                                break;
+                            }
+
                         }
                     }
                 }
+
             }
             catch (Exception ex)
             {
@@ -58,10 +61,50 @@ namespace WebApplication1
             }
             finally
             {
-                // Ensure the connection is closed, whether an exception occurs or not
                 connection.Close();
             }
 
+            return found;
+
+        }
+
+        public bool checkPassword(string username, string hashed)
+        {
+            bool correct = false;
+            try
+            {
+                connection.Open();
+                string query = $"select * from BVMUsers x where x.userName = '{username.ToLower()}' and x.password = '{hashed}'";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            //string user = reader.GetString("userName");
+                            string password = reader["password"].ToString();
+                            if (password != null && password == hashed)
+                            {
+                                correct = true;
+                                break;
+                            }
+
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return correct;
 
         }
 

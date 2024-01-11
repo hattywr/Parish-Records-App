@@ -11,8 +11,29 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            DatabaseConnections database = new DatabaseConnections();
-            database.getRecord();
+            if (Session["authenticated"] != null)
+            {
+                bool authenticated = (bool)Session["authenticated"];
+
+                if (authenticated != true)
+                {
+                    Response.Redirect("AdminAuthentication.aspx");
+                }
+                else
+                {
+                    MAIN_Table_of_Contents.Visible = true;
+                }
+            }
+            else
+            {
+                Response.Redirect("AdminAuthentication.aspx");
+            }
+        }
+
+        protected void logout_button_Click(object sender, EventArgs e)
+        {
+            Session["authenticated"] = null;
+            Response.Redirect("AdminAuthentication.aspx");
         }
     }
 }
