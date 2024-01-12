@@ -179,7 +179,7 @@
 
 
 .textbox {
-    width: -webkit-fill-available;
+    width: 60%;
     height: 2.2em;
     border: 2px solid black;
     border-radius: 3em;

@@ -10,25 +10,24 @@
        </asp:TableRow>
 
        <asp:TableRow runat="server" CssClass="content_row">
-           <asp:TableCell runat="server" Text="Family Lookup" CssClass="content_cell">
+           <asp:TableCell runat="server" Text="Family Lookup - Search for a family based on last name" CssClass="content_cell">
+               <asp:TableCell runat="server" CssClass="content_cell">
+                   <asp:TextBox runat="server" ID="lastNameTB" CssClass="textbox" style="vertical-align:middle"></asp:TextBox>
+                   <asp:Button runat="server" ID="searchLastNameButton" CssClass="button_style" Text="Submit" OnClick="searchLastNameButton_Click" style="width:25%; vertical-align:middle; margin-left:5%" />
+               </asp:TableCell>
+
            </asp:TableCell>
            
        </asp:TableRow>
 
 
-
-       <asp:TableRow runat="server" CssClass="content_row">
-           <asp:TableCell runat="server" Text ="Child Lookup" CssClass="content_cell"></asp:TableCell>
-
-       </asp:TableRow>
-
-       <asp:TableRow runat="server" CssClass="content_row">
-           <asp:TableCell runat="server" Text ="Family Additions" CssClass="content_cell"></asp:TableCell>
-
-       </asp:TableRow>
-
-
    </asp:Table>
+    
+    <asp:Table ID="parentOptionsTable" runat="server" CssClass="contents_table" Visible="false">
+        <asp:TableRow runat="server" CssClass="table_title">
+            <asp:TableCell runat="server" Text="Please click on one of the options below to view family details" ColumnSpan="2" CssClass="title_cell"></asp:TableCell>
+        </asp:TableRow>
+    </asp:Table>
 
 </asp:Content>
 

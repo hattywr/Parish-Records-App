@@ -165,10 +165,6 @@ C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\WebApplication1\obj\Deb
 C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\WebApplication1\obj\Debug\ParishRecordsAccess.csproj.CopyComplete
 C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\WebApplication1\obj\Debug\WebApplication1.dll
 C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\WebApplication1\obj\Debug\WebApplication1.pdb
-C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\obj\Debug\ParishRecordsAccess.csproj.AssemblyReference.cache
-C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\obj\Debug\ParishRecordsAccess.csproj.CoreCompileInputs.cache
-C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\obj\Debug\WebApplication1.dll
-C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\obj\Debug\WebApplication1.pdb
 C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\bin\WebApplication1.dll.config
 C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\bin\WebApplication1.dll
 C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\bin\WebApplication1.pdb
@@ -331,4 +327,8 @@ C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\bin
 C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\bin\ru\Microsoft.Data.SqlClient.resources.dll
 C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\bin\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\bin\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\obj\Debug\ParishRecordsAccess.csproj.AssemblyReference.cache
+C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\obj\Debug\ParishRecordsAccess.csproj.CoreCompileInputs.cache
 C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\obj\Debug\ParishRecordsAccess.csproj.CopyComplete
+C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\obj\Debug\WebApplication1.dll
+C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\obj\Debug\WebApplication1.pdb

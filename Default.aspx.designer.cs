@@ -24,6 +24,33 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.Table MAIN_Table_of_Contents;
 
         /// <summary>
+        /// lastNameTB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox lastNameTB;
+
+        /// <summary>
+        /// searchLastNameButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button searchLastNameButton;
+
+        /// <summary>
+        /// parentOptionsTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table parentOptionsTable;
+
+        /// <summary>
         /// logout_button control.
         /// </summary>
         /// <remarks>

@@ -9,8 +9,12 @@ namespace WebApplication1
 {
     public partial class _Default : Page
     {
+        DatabaseConnections connections = new DatabaseConnections();
         protected void Page_Load(object sender, EventArgs e)
         {
+            // temporary for testing purposes only
+            Session["authenticated"] = true;
+
             if (Session["authenticated"] != null)
             {
                 bool authenticated = (bool)Session["authenticated"];
@@ -34,6 +38,62 @@ namespace WebApplication1
         {
             Session["authenticated"] = null;
             Response.Redirect("AdminAuthentication.aspx");
+        }
+
+        protected void searchLastNameButton_Click(object sender, EventArgs e)
+        {
+            string lastName = lastNameTB.Text;
+
+            if(lastName.Length == 0)
+            {
+                // Generate JavaScript to display an alert box
+                string script = "alert('Please enter a last name to search by');";
+
+                // Register the script with the page
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
+            }
+            else
+            {
+                List<ParentOption> possibleMatches = new List<ParentOption>();
+
+                possibleMatches = connections.searchLastName(lastName);
+                if (possibleMatches.Count != 0)
+                {
+                    parentOptionsTable.Visible = true;
+                    foreach (ParentOption possibleMatch in possibleMatches)
+                    {
+                        HyperLink link = new HyperLink();
+                        link.NavigateUrl = ("FamilyInfo.aspx?parents=" + possibleMatch.familyID);
+                        link.Text = possibleMatch.parentNames + " " + possibleMatch.familyName;
+
+                        TableRow row = new TableRow();
+                        row.CssClass = "content_row";
+
+                        TableCell cell1 = new TableCell();
+                        cell1.CssClass = "content_cell";
+                        cell1.ColumnSpan = 2;
+                        cell1.Controls.Add(link);
+                        row.Cells.Add(cell1);
+                        parentOptionsTable.Rows.Add(row);
+
+                    }
+                }
+                else
+                {
+                    // Generate JavaScript to display an alert box
+                    string script = "alert('No family matches. Please try again');";
+
+                    // Register the script with the page
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
+                }
+            }
+
+            
+
+
+            
+
+
         }
     }
 }

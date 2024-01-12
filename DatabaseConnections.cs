@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using Newtonsoft.Json.Linq;
@@ -106,6 +107,47 @@ namespace WebApplication1
 
             return correct;
 
+        }
+
+        public List<ParentOption> searchLastName(string lastName)
+        {
+            List<ParentOption> parentOptions = new List<ParentOption>();
+            try
+            {
+                connection.Open();
+                string query = $"select * from BVMFamilies x where x.sir like '%{lastName}%'";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            //string user = reader.GetString("userName");
+                            string familyID = reader["fid"].ToString();
+                            string parentNames = reader["parents"].ToString();
+                            string parentLastName = reader["sir"].ToString();
+                            if (parentNames != null)
+                            { 
+                                ParentOption option = new ParentOption(familyID, parentNames, parentLastName);
+
+                                parentOptions.Add(option);
+                            }
+
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return parentOptions;
         }
 
 
