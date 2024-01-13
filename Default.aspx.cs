@@ -63,7 +63,7 @@ namespace WebApplication1
                     foreach (ParentOption possibleMatch in possibleMatches)
                     {
                         HyperLink link = new HyperLink();
-                        link.NavigateUrl = ("FamilyInfo.aspx?parents=" + possibleMatch.familyID);
+                        link.NavigateUrl = ("FamilyInfo.aspx?famID=" + possibleMatch.familyID);
                         link.Text = possibleMatch.parentNames + " " + possibleMatch.familyName;
 
                         TableRow row = new TableRow();

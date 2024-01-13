@@ -6,7 +6,7 @@
 
           <asp:Table ID="authentication_table" runat="server" CssClass="contents_table" Style="width:60%" Visible="false">
         <asp:TableRow CssClass="table_title">
-            <asp:TableCell ID="title_Cell" runat="server" Text="AUTHENTICATION TABLE" ColumnSpan="2" CssClass="title_cell"></asp:TableCell>
+            <asp:TableCell ID="title_Cell" runat="server" Text="AUTHENTICATION" ColumnSpan="2" CssClass="title_cell"></asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow CssClass="content_row">

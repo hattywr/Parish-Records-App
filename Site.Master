@@ -78,7 +78,7 @@
 
  <div id="footer">
      <footer>
-         <p>&copy; <%: DateTime.Now.Year %></p>
+         <p>&copy; <%: DateTime.Now.Year %> - BVMParishRecords.com</p>
          <p>NOTE - This site is still under construction. 
              Please be patient as we complete the development of this site. Please send an email to w.hatty@materdei.academy
              for suggestions or bug reports.

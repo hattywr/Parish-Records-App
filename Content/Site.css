@@ -157,6 +157,26 @@
     font-weight: 600;
 }
 
+.left_content_cell {
+    width: 30%;
+    border: 2px;
+    border-style: solid;
+    border-color: royalblue;
+    border-radius: 10px;
+    padding: 3px;
+    font-weight: 600;
+}
+
+.right_content_cell {
+    width: 70%;
+    border: 2px;
+    border-style: solid;
+    border-color: royalblue;
+    border-radius: 10px;
+    padding: 3px;
+    font-weight: 600;
+}
+
 .button_style {
     width: 8em;
     background-color: darkgreen;

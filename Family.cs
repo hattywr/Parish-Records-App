@@ -11,17 +11,19 @@ namespace WebApplication1
         public int familyID {  get; set; }
         public string fatherName {  get; set; }
         public string motherName { get; set; }
+
+        public string familyLastName { get; set; }
         public string familyAddress { get; set; }
         public string familyCity { get; set; }
         public string familyState { get; set; }
         public string familyCountry { get; set; }
         public string familyZIP { get; set; }
-        public bool fatherBaptized { get; set; }
-        public bool motherBaptized { get; set; }
-        public bool fatherCommunion { get; set; }
-        public bool motherCommunion { get; set; }
-        public bool fatherConfirmed { get; set; }
-        public bool motherConfirmed { get; set; }
+        public string fatherBaptized { get; set; }
+        public string motherBaptized { get; set; }
+        public string fatherCommunion { get; set; }
+        public string motherCommunion { get; set; }
+        public string fatherConfirmed { get; set; }
+        public string motherConfirmed { get; set; }
         public string phoneOne { get; set; }
         public string phoneTwo { get; set; }
         public string phoneThree { get; set; }
@@ -34,17 +36,18 @@ namespace WebApplication1
             int famID,
             string father, 
             string mother, 
+            string lastName,
             string address, 
             string city, 
             string state, 
             string country, 
             string postalCode,
-            bool fathBaptized,
-            bool mothBaptized,
-            bool fathCommunion,
-            bool mothCommunion,
-            bool fathConfirmed,
-            bool mothConfirmed,
+            string fathBaptized,
+            string mothBaptized,
+            string fathCommunion,
+            string mothCommunion,
+            string fathConfirmed,
+            string mothConfirmed,
             string married,
             string phone1 = "", 
             string phone2 = "", 
@@ -56,6 +59,7 @@ namespace WebApplication1
             familyID = famID;
             fatherName = father;
             motherName = mother;
+            familyLastName = lastName;
             familyAddress = address;
             familyCity = city;
             familyState = state;
@@ -74,6 +78,7 @@ namespace WebApplication1
             phoneFour = phone4;
             emailOne = email1;
             emailTwo = email2;
+            members = new List<FamilyMember>();
         } 
     }
 }
