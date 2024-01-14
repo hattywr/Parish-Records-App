@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -98,12 +95,13 @@ namespace WebApplication1
             TextBox box = new TextBox();
             box.CssClass = "textbox";
             box.Text = $"{member.firstName} {member.middleName} {member.lastName}";
+            box.ID = member.childID.ToString() + "NameTB";
             cell2.Controls.Add(box);
 
             Button button = new Button();
             button.CssClass = "button_style";
             button.Text = "Update Name";
-            button.ID = "UpdateName" + member.childID;
+            button.ID = member.childID.ToString() + "UpdateName";
             button.Click += UpdateName_Click;
             cell2.Controls.Add(button);
             row1.Cells.Add(cell1);
@@ -122,12 +120,13 @@ namespace WebApplication1
             TextBox box2 = new TextBox();
             box2.CssClass = "textbox";
             box2.Text = $"{member.DOB}";
+            box2.ID = member.childID.ToString() + "DOBTB";
             cell4.Controls.Add(box2);
 
             Button button2 = new Button();
             button2.CssClass = "button_style";
             button2.Text = "Update DOB";
-            button2.ID = "UpdateDOB" + member.childID;
+            button2.ID = member.childID.ToString() + "UpdateDOB";
             button2.Click += UpdateDOB_Click;
             cell4.Controls.Add(button2);
             row2.Cells.Add(cell3);
@@ -145,12 +144,13 @@ namespace WebApplication1
             TextBox box3 = new TextBox();
             box3.CssClass = "textbox";
             box3.Text = $"{member.isBaptized}";
+            box3.ID = member.childID.ToString() + "BaptizedTB";
             cell6.Controls.Add(box3);
 
             Button button3 = new Button();
             button3.CssClass = "button_style";
             button3.Text = "Update Bap";
-            button3.ID = "UpdateBaptized" + member.childID;
+            button3.ID = member.childID.ToString() + "UpdateBaptized";
             button3.Click += UpdateBaptized_Click;
             cell6.Controls.Add(button3);
             row3.Cells.Add(cell5);
@@ -167,12 +167,13 @@ namespace WebApplication1
             TextBox box4 = new TextBox();
             box4.CssClass = "textbox";
             box4.Text = $"{member.fstCommunion}";
+            box4.ID = member.childID.ToString() + "FirstCommunionTB";
             cell8.Controls.Add(box4);
 
             Button button4 = new Button();
             button4.CssClass = "button_style";
             button4.Text = "Update Comm";
-            button4.ID = "UpdateCommunion" + member.childID;
+            button4.ID = member.childID.ToString() + "UpdateCommunion";
             button4.Click += UpdateCommunion_Click;
             cell8.Controls.Add(button4);
             row4.Cells.Add(cell7);
@@ -190,12 +191,13 @@ namespace WebApplication1
             TextBox box5 = new TextBox();
             box5.CssClass = "textbox";
             box5.Text = $"{member.isConfirmed}";
+            box5.ID = member.childID.ToString() + "ConfirmedTB";
             cell10.Controls.Add(box5);
 
             Button button5 = new Button();
             button5.CssClass = "button_style";
             button5.Text = "Update Conf";
-            button5.ID = "UpdateConfirmed" + member.childID;
+            button5.ID = member.childID.ToString() + "UpdateConfirmed";
             button5.Click += UpdateConfirmed_Click;
             cell10.Controls.Add(button5);
 
@@ -213,12 +215,13 @@ namespace WebApplication1
             TextBox box6 = new TextBox();
             box6.CssClass = "textbox";
             box6.Text = $"{member.status}";
+            box6.ID = member.childID.ToString() + "StatusTB";
             cell12.Controls.Add(box6);
 
             Button button6 = new Button();
             button6.CssClass = "button_style";
             button6.Text = "Update Status";
-            button6.ID = "UpdateStatus";
+            button6.ID = member.childID.ToString() + "UpdateStatus";
             button6.Click += UpdateStatus_Click;
             cell12.Controls.Add(button6);
             row6.Cells.Add(cell11);
@@ -242,6 +245,46 @@ namespace WebApplication1
         {
             Button button = (Button)sender; // get the button that was pressed via the sender event
             string buttonId = button.ID; // retrieve the button ID
+            string childID = buttonId.Replace("UpdateName", ""); // strip extra string to get childID
+            TextBox newNameTB = (TextBox)FindControlRecursive(Page, childID + "NameTB");
+            string newName = newNameTB.Text;
+            if(newName != string.Empty)
+            {
+                String[] names = newName.Split(' ');
+                if (names.Length < 3) // not in first, middle, last name format
+                {
+                    if (names.Length == 2)
+                    {
+                        string first = names[0];
+                        string last = names[1];
+                        // do code stuff 
+                        //first and last format - no middle
+                    }
+                    else
+                    {
+                        string script = "setTimeout(function() { alert('Please enter a name in the format of first middle last - spaces required between each word. If there is no middle name, enter the name in first last (one space between words)'); }, 25);";
+                        ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                    }
+                }
+                else if (names.Length == 3)
+                {
+                    string first = names[0];
+                    string middle = names[1];
+                    string last = names[2];
+                    // do database stuff
+                }
+                else
+                {
+                    string script = "setTimeout(function() { alert('Please enter a name in the format of first middle last - spaces required between each word. If there is no middle name, enter the name in first last (one space between words)'); }, 25);";
+                    ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                }
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Please enter a name in the format of first middle last - spaces required between each word. If there is no middle name, enter the name in first last (one space between words)'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            
 
         }
 
@@ -249,35 +292,100 @@ namespace WebApplication1
         {
             Button button = (Button)sender; // get the button that was pressed via the sender event
             string buttonId = button.ID; // retrieve the button ID
-
+            string childID = buttonId.Replace("UpdateDOB", "");
+            TextBox newDOBTB = (TextBox)FindControlRecursive(Page, childID + "DOBTB");
+            string newDOB = newDOBTB.Text;
+            if(newDOB != string.Empty)
+            {
+                String[] date = newDOB.Split('/');
+                if (date.Length != 3)
+                {
+                    string script = "setTimeout(function() { alert('Please enter a date in the mm/dd/yyyy format. This is the only accepted format.'); }, 25);";
+                    ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                }
+                else
+                {
+                    // do database stuff
+                }
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Please enter a date in the mm/dd/yyyy format. This is the only accepted format.'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            
         }
 
         protected void UpdateBaptized_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender; // get the button that was pressed via the sender event
             string buttonId = button.ID; // retrieve the button ID
-
+            string childID = buttonId.Replace("UpdateBaptized", "");
+            TextBox newBaptizedTB = (TextBox)FindControlRecursive(Page, childID + "BaptizedTB");
+            string newBaptized = newBaptizedTB.Text;
+            if(newBaptized != string.Empty && ( newBaptized.ToLower().Equals("true") || newBaptized.ToLower().Equals("false")))
+            {
+                // do database stuff
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Please enter either True or False.'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }    
         }
 
         protected void UpdateCommunion_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender; // get the button that was pressed via the sender event
             string buttonId = button.ID; // retrieve the button ID
-
+            string childID = buttonId.Replace("UpdateCommunion", "");
+            TextBox newCommunionTB = (TextBox)FindControlRecursive(Page, childID + "FirstCommunionTB");
+            string newCommunion = newCommunionTB.Text;
+            if (newCommunion != string.Empty && (newCommunion.ToLower().Equals("true") || newCommunion.ToLower().Equals("false")))
+            {
+                // do database stuff
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Please enter either True or False.'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
         }
 
         protected void UpdateConfirmed_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender; // get the button that was pressed via the sender event
             string buttonId = button.ID; // retrieve the button ID
-
+            string childID = buttonId.Replace("UpdateConfirmed", "");
+            TextBox newConfirmedTB = (TextBox)FindControlRecursive(Page, childID + "ConfirmedTB");
+            string newConfirmed = newConfirmedTB.Text;
+            if (newConfirmed!= string.Empty &&( newConfirmed.ToLower().Equals("true") || newConfirmed.ToLower().Equals("false")))
+            {
+                // do database stuff
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Please enter either True or False.'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
         }
 
         protected void UpdateStatus_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender; // get the button that was pressed via the sender event
             string buttonId = button.ID; // retrieve the button ID
-
+            string childID = buttonId.Replace("UpdateStatus", "");
+            TextBox newStatusTB = (TextBox)FindControlRecursive(Page, childID + "StatusTB");
+            string newStatus = newStatusTB.Text;
+            if(newStatus != null && newStatus != String.Empty && Convert.ToInt32(newStatus) < 10)
+            {
+                // do database stuff
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Please enter a digit'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
         }
         protected void AddressUpdateButton_Click(object sender, EventArgs e)
         {

@@ -46,11 +46,9 @@ namespace WebApplication1
 
             if(lastName.Length == 0)
             {
-                // Generate JavaScript to display an alert box
-                string script = "alert('Please enter a last name to search by');";
 
-                // Register the script with the page
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
+                string script = "setTimeout(function() { alert('Please enter a last name to search by'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
             }
             else
             {

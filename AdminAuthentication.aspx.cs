@@ -45,20 +45,16 @@ namespace WebApplication1
             // Authentication development in progress - planning to utilize a hash to securely check passwords - allow user to set up an account
             if (username_entry.Text == "")
             {
-                // Generate JavaScript to display an alert box
-                string script = "alert('Please enter a username');";
-
-                // Register the script with the page
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
+                string script = "setTimeout(function() { alert('Please enter a username'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                
 
                 //pass through a state as well --> maybe work with a text file to make it hard to get into and ensure the username is set as "cleared"
             }
             else if (password_entry_box.Text == "")
             {
-                string script = "alert('Please enter a password');";
-
-                // Register the script with the page
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
+                string script = "setTimeout(function() { alert('Please enter a password'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
             }
             else
             {
@@ -74,18 +70,15 @@ namespace WebApplication1
                     }
                     else
                     {
-                        string script = "alert('Username or password incorrect. Please try again!');";
 
-                        // Register the script with the page
-                        Page.ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
+                        string script = "setTimeout(function() { alert('Username or password incorrect. Please try again!'); }, 25);";
+                        ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
                     }
                 }
                 else
                 {
-                    string script = "alert('Username not found, please try again');";
-
-                    // Register the script with the page
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
+                    string script = "setTimeout(function() { alert('Username not found, please try again!'); }, 25);";
+                    ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
                 }
                 //authentication failed --> somehow tell the user and make them try again
                 //use deskreg javascript to do these
