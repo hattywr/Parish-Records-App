@@ -28,35 +28,40 @@
         <asp:TableRow runat="server" CssClass="content_row">
             <asp:TableCell runat="server" Text="Address" CssClass="left_content_cell"></asp:TableCell>
             <asp:TableCell runat="server" ID="AddressCell" CssClass="right_content_cell">
-                <asp:Label runat="server" ID="AddressLabel"></asp:Label>
+                <asp:TextBox runat="server" ID="AddressTB" CssClass="textbox"></asp:TextBox>
+                <asp:Button runat="server" ID="AddressUpdateButton" Text ="Update" CssClass="button_style" OnClick="AddressUpdateButton_Click" />
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow runat="server" CssClass="content_row">
             <asp:TableCell runat="server" Text="City" CssClass="left_content_cell"></asp:TableCell>
             <asp:TableCell runat="server" ID="CityCell" CssClass="right_content_cell">
-                <asp:Label runat="server" ID="CityLabel"></asp:Label>
+                <asp:TextBox runat="server" ID="CityTB" CssClass="textbox"></asp:TextBox>
+                <asp:Button runat="server" ID="CityUpdateButton" Text ="Update" CssClass="button_style" OnClick="CityUpdateButton_Click" />
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow runat="server" CssClass="content_row">
             <asp:TableCell runat="server" Text="State" CssClass="left_content_cell"></asp:TableCell>
             <asp:TableCell runat="server" ID="StateCell" CssClass="right_content_cell">
-                <asp:Label runat="server" ID="StateLabel"></asp:Label>
+                <asp:TextBox runat="server" ID="StateTB" CssClass="textbox"></asp:TextBox>
+                <asp:Button runat="server" ID="StateUpdateButton" Text ="Update" CssClass="button_style" OnClick="StateUpdateButton_Click" />
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow runat="server" CssClass="content_row">
             <asp:TableCell runat="server" Text="Country" CssClass="left_content_cell"></asp:TableCell>
             <asp:TableCell runat="server" ID="CountryCell" CssClass="right_content_cell">
-                <asp:Label runat="server" ID="CountryLabel"></asp:Label>
+                <asp:TextBox runat="server" ID="CountryTB" CssClass="textbox"></asp:TextBox>
+                <asp:Button runat="server" ID="CountryUpdateButton" Text ="Update" CssClass="button_style" OnClick="CountryUpdateButton_Click" />
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow runat="server" CssClass="content_row">
             <asp:TableCell runat="server" Text="ZIP Code" CssClass="left_content_cell"></asp:TableCell>
             <asp:TableCell runat="server" ID="ZipCell" CssClass="right_content_cell">
-                <asp:Label runat="server" ID="ZipLabel"></asp:Label>
+                <asp:TextBox runat="server" ID="ZipTB" CssClass="textbox"></asp:TextBox>
+                <asp:Button runat="server" ID="ZipUpdateButton" Text ="Update" CssClass="button_style" OnClick="ZipUpdateButton_Click" />
             </asp:TableCell>
         </asp:TableRow>
 
@@ -64,7 +69,8 @@
         <asp:TableRow runat="server" CssClass="content_row">
             <asp:TableCell runat="server" Text="Married Date" CssClass="left_content_cell"></asp:TableCell>
             <asp:TableCell runat="server" ID="marriedCell" CssClass="right_content_cell">
-                <asp:Label runat="server" ID="marriedLabel"></asp:Label>
+                <asp:TextBox runat="server" ID="marriedTB" CssClass="textbox"></asp:TextBox>
+                <asp:Button runat="server" ID="marriedUpdateButton" Text ="Update" CssClass="button_style" OnClick="marriedUpdateButton_Click" />
             </asp:TableCell>
         </asp:TableRow>
 
@@ -72,7 +78,8 @@
         <asp:TableRow runat="server" CssClass="content_row">
             <asp:TableCell runat="server" Text="Phone 1" CssClass="left_content_cell"></asp:TableCell>
             <asp:TableCell runat="server" ID="phone1Cell" CssClass="right_content_cell">
-                <asp:Label runat="server" ID="phone1Label"></asp:Label>
+                <asp:TextBox runat="server" ID="phone1TB" CssClass="textbox"></asp:TextBox>
+                <asp:Button runat="server" ID="phone1UpdateButton" Text ="Update" CssClass="button_style" OnClick="phone1UpdateButton_Click" />
             </asp:TableCell>
         </asp:TableRow>
 
@@ -80,77 +87,88 @@
         <asp:TableRow runat="server" CssClass="content_row">
             <asp:TableCell runat="server" Text="Phone 2" CssClass="left_content_cell"></asp:TableCell>
             <asp:TableCell runat="server" ID="phone2Cell" CssClass="right_content_cell">
-                <asp:Label runat="server" ID="phone2Label"></asp:Label>
+                <asp:TextBox runat="server" ID="phone2TB" CssClass="textbox"></asp:TextBox>
+                <asp:Button runat="server" ID="phone2UpdateButton" Text ="Update" CssClass="button_style" OnClick="phone2UpdateButton_Click" />
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow runat="server" CssClass="content_row">
             <asp:TableCell runat="server" Text="Phone 3" CssClass="left_content_cell"></asp:TableCell>
             <asp:TableCell runat="server" ID="phone3Cell" CssClass="right_content_cell">
-                <asp:Label runat="server" ID="phone3Label"></asp:Label>
+                <asp:TextBox runat="server" ID="phone3TB" CssClass="textbox"></asp:TextBox>
+                <asp:Button runat="server" ID="phone3UpdateButton" Text ="Update" CssClass="button_style" OnClick="phone3UpdateButton_Click" />
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow runat="server" CssClass="content_row">
             <asp:TableCell runat="server" Text="Phone 4" CssClass="left_content_cell"></asp:TableCell>
             <asp:TableCell runat="server" ID="phone4Cell" CssClass="right_content_cell">
-                <asp:Label runat="server" ID="phone4Label"></asp:Label>
+                <asp:TextBox runat="server" ID="phone4TB" CssClass="textbox"></asp:TextBox>
+                <asp:Button runat="server" ID="phone4UpdateButton" Text ="Update" CssClass="button_style" OnClick="phone4UpdateButton_Click" />
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow runat="server" CssClass="content_row">
             <asp:TableCell runat="server" Text="Email 1" CssClass="left_content_cell"></asp:TableCell>
             <asp:TableCell runat="server" ID="email1Cell" CssClass="right_content_cell">
-                <asp:Label runat="server" ID="email1Label"></asp:Label>
+                <asp:TextBox runat="server" ID="email1TB" CssClass="textbox"></asp:TextBox>
+                <asp:Button runat="server" ID="email1UpdateButton" Text ="Update" CssClass="button_style" OnClick="email1UpdateButton_Click" />
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow runat="server" CssClass="content_row">
             <asp:TableCell runat="server" Text="Email 2" CssClass="left_content_cell"></asp:TableCell>
             <asp:TableCell runat="server" ID="email2Cell" CssClass="right_content_cell">
-                <asp:Label runat="server" ID="email2Label"></asp:Label>
+                <asp:TextBox runat="server" ID="email2TB" CssClass="textbox"></asp:TextBox>
+                <asp:Button runat="server" ID="email2UpdateButton" Text ="Update" CssClass="button_style" OnClick="email2UpdateButton_Click" />
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow runat="server" CssClass="content_row">
             <asp:TableCell runat="server" Text="Father Baptized" CssClass="left_content_cell"></asp:TableCell>
             <asp:TableCell runat="server" ID="fbapCell" CssClass="right_content_cell">
-                <asp:Label runat="server" ID="fbapLabel"></asp:Label>
+                <asp:TextBox runat="server" ID="fbapTB" CssClass="textbox"></asp:TextBox>
+                <asp:Button runat="server" ID="fbapUpdateButton" Text ="Update" CssClass="button_style" OnClick="fbapUpdateButton_Click" />
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow runat="server" CssClass="content_row">
             <asp:TableCell runat="server" Text="Mother Baptized" CssClass="left_content_cell"></asp:TableCell>
             <asp:TableCell runat="server" ID="mbapCell" CssClass="right_content_cell">
-                <asp:Label runat="server" ID="mbapLabel"></asp:Label>
+                <asp:TextBox runat="server" ID="mbapTB" CssClass="textbox"></asp:TextBox>
+                <asp:Button runat="server" ID="mbapUpdateButton" Text ="Update" CssClass="button_style" OnClick="mbapUpdateButton_Click" />
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow runat="server" CssClass="content_row">
             <asp:TableCell runat="server" Text="Father Communion" CssClass="left_content_cell"></asp:TableCell>
             <asp:TableCell runat="server" ID="fcomCell" CssClass="right_content_cell">
-                <asp:Label runat="server" ID="fcomLabel"></asp:Label>
+                <asp:TextBox runat="server" ID="fcomTB" CssClass="textbox"></asp:TextBox>
+                <asp:Button runat="server" ID="fcomUpdateButton" Text ="Update" CssClass="button_style" OnClick="fcomUpdateButton_Click" />
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow runat="server" CssClass="content_row">
             <asp:TableCell runat="server" Text="Mother Communion" CssClass="left_content_cell"></asp:TableCell>
             <asp:TableCell runat="server" ID="mcomCell" CssClass="right_content_cell">
-                <asp:Label runat="server" ID="mcomLabel"></asp:Label>
+                <asp:TextBox runat="server" ID="mcomTB" CssClass="textbox"></asp:TextBox>
+                <asp:Button runat="server" ID="mcomUpdateButton" Text ="Update" CssClass="button_style" OnClick="mcomUpdateButton_Click" />
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow runat="server" CssClass="content_row">
             <asp:TableCell runat="server" Text="Father Confirmed" CssClass="left_content_cell"></asp:TableCell>
             <asp:TableCell runat="server" ID="fconfCell" CssClass="right_content_cell">
-                <asp:Label runat="server" ID="fconfLabel"></asp:Label>
+                <asp:TextBox runat="server" ID="fconfTB" CssClass="textbox"></asp:TextBox>
+                <asp:Button runat="server" ID="fconfUpdateButton" Text ="Update" CssClass="button_style" OnClick="fconfUpdateButton_Click" />
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow runat="server" CssClass="content_row">
             <asp:TableCell runat="server" Text="Mother Confirmed" CssClass="left_content_cell"></asp:TableCell>
             <asp:TableCell runat="server" ID="mconfCell" CssClass="right_content_cell">
-                <asp:Label runat="server" ID="mconfLabel"></asp:Label>
+                <asp:TextBox runat="server" ID="mconfTB" CssClass="textbox"></asp:TextBox>
+                <asp:Button runat="server" ID="mconfUpdateButton" Text ="Update" CssClass="button_style" OnClick="mconfUpdateButton_Click" />
             </asp:TableCell>
         </asp:TableRow>
 

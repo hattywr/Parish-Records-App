@@ -69,13 +69,22 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TableCell AddressCell;
 
         /// <summary>
-        /// AddressLabel control.
+        /// AddressTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label AddressLabel;
+        protected global::System.Web.UI.WebControls.TextBox AddressTB;
+
+        /// <summary>
+        /// AddressUpdateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button AddressUpdateButton;
 
         /// <summary>
         /// CityCell control.
@@ -87,13 +96,22 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TableCell CityCell;
 
         /// <summary>
-        /// CityLabel control.
+        /// CityTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CityLabel;
+        protected global::System.Web.UI.WebControls.TextBox CityTB;
+
+        /// <summary>
+        /// CityUpdateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CityUpdateButton;
 
         /// <summary>
         /// StateCell control.
@@ -105,13 +123,22 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TableCell StateCell;
 
         /// <summary>
-        /// StateLabel control.
+        /// StateTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label StateLabel;
+        protected global::System.Web.UI.WebControls.TextBox StateTB;
+
+        /// <summary>
+        /// StateUpdateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button StateUpdateButton;
 
         /// <summary>
         /// CountryCell control.
@@ -123,13 +150,22 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TableCell CountryCell;
 
         /// <summary>
-        /// CountryLabel control.
+        /// CountryTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CountryLabel;
+        protected global::System.Web.UI.WebControls.TextBox CountryTB;
+
+        /// <summary>
+        /// CountryUpdateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CountryUpdateButton;
 
         /// <summary>
         /// ZipCell control.
@@ -141,13 +177,22 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TableCell ZipCell;
 
         /// <summary>
-        /// ZipLabel control.
+        /// ZipTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ZipLabel;
+        protected global::System.Web.UI.WebControls.TextBox ZipTB;
+
+        /// <summary>
+        /// ZipUpdateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ZipUpdateButton;
 
         /// <summary>
         /// marriedCell control.
@@ -159,13 +204,22 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TableCell marriedCell;
 
         /// <summary>
-        /// marriedLabel control.
+        /// marriedTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label marriedLabel;
+        protected global::System.Web.UI.WebControls.TextBox marriedTB;
+
+        /// <summary>
+        /// marriedUpdateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button marriedUpdateButton;
 
         /// <summary>
         /// phone1Cell control.
@@ -177,13 +231,22 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TableCell phone1Cell;
 
         /// <summary>
-        /// phone1Label control.
+        /// phone1TB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label phone1Label;
+        protected global::System.Web.UI.WebControls.TextBox phone1TB;
+
+        /// <summary>
+        /// phone1UpdateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button phone1UpdateButton;
 
         /// <summary>
         /// phone2Cell control.
@@ -195,13 +258,22 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TableCell phone2Cell;
 
         /// <summary>
-        /// phone2Label control.
+        /// phone2TB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label phone2Label;
+        protected global::System.Web.UI.WebControls.TextBox phone2TB;
+
+        /// <summary>
+        /// phone2UpdateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button phone2UpdateButton;
 
         /// <summary>
         /// phone3Cell control.
@@ -213,13 +285,22 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TableCell phone3Cell;
 
         /// <summary>
-        /// phone3Label control.
+        /// phone3TB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label phone3Label;
+        protected global::System.Web.UI.WebControls.TextBox phone3TB;
+
+        /// <summary>
+        /// phone3UpdateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button phone3UpdateButton;
 
         /// <summary>
         /// phone4Cell control.
@@ -231,13 +312,22 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TableCell phone4Cell;
 
         /// <summary>
-        /// phone4Label control.
+        /// phone4TB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label phone4Label;
+        protected global::System.Web.UI.WebControls.TextBox phone4TB;
+
+        /// <summary>
+        /// phone4UpdateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button phone4UpdateButton;
 
         /// <summary>
         /// email1Cell control.
@@ -249,13 +339,22 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TableCell email1Cell;
 
         /// <summary>
-        /// email1Label control.
+        /// email1TB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label email1Label;
+        protected global::System.Web.UI.WebControls.TextBox email1TB;
+
+        /// <summary>
+        /// email1UpdateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button email1UpdateButton;
 
         /// <summary>
         /// email2Cell control.
@@ -267,13 +366,22 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TableCell email2Cell;
 
         /// <summary>
-        /// email2Label control.
+        /// email2TB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label email2Label;
+        protected global::System.Web.UI.WebControls.TextBox email2TB;
+
+        /// <summary>
+        /// email2UpdateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button email2UpdateButton;
 
         /// <summary>
         /// fbapCell control.
@@ -285,13 +393,22 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TableCell fbapCell;
 
         /// <summary>
-        /// fbapLabel control.
+        /// fbapTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label fbapLabel;
+        protected global::System.Web.UI.WebControls.TextBox fbapTB;
+
+        /// <summary>
+        /// fbapUpdateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button fbapUpdateButton;
 
         /// <summary>
         /// mbapCell control.
@@ -303,13 +420,22 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TableCell mbapCell;
 
         /// <summary>
-        /// mbapLabel control.
+        /// mbapTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label mbapLabel;
+        protected global::System.Web.UI.WebControls.TextBox mbapTB;
+
+        /// <summary>
+        /// mbapUpdateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button mbapUpdateButton;
 
         /// <summary>
         /// fcomCell control.
@@ -321,13 +447,22 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TableCell fcomCell;
 
         /// <summary>
-        /// fcomLabel control.
+        /// fcomTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label fcomLabel;
+        protected global::System.Web.UI.WebControls.TextBox fcomTB;
+
+        /// <summary>
+        /// fcomUpdateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button fcomUpdateButton;
 
         /// <summary>
         /// mcomCell control.
@@ -339,13 +474,22 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TableCell mcomCell;
 
         /// <summary>
-        /// mcomLabel control.
+        /// mcomTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label mcomLabel;
+        protected global::System.Web.UI.WebControls.TextBox mcomTB;
+
+        /// <summary>
+        /// mcomUpdateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button mcomUpdateButton;
 
         /// <summary>
         /// fconfCell control.
@@ -357,13 +501,22 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TableCell fconfCell;
 
         /// <summary>
-        /// fconfLabel control.
+        /// fconfTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label fconfLabel;
+        protected global::System.Web.UI.WebControls.TextBox fconfTB;
+
+        /// <summary>
+        /// fconfUpdateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button fconfUpdateButton;
 
         /// <summary>
         /// mconfCell control.
@@ -375,13 +528,22 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TableCell mconfCell;
 
         /// <summary>
-        /// mconfLabel control.
+        /// mconfTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label mconfLabel;
+        protected global::System.Web.UI.WebControls.TextBox mconfTB;
+
+        /// <summary>
+        /// mconfUpdateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button mconfUpdateButton;
 
         /// <summary>
         /// childrenTablePlaceHolder control.
