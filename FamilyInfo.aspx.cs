@@ -23,6 +23,12 @@ namespace WebApplication1
                 Response.Redirect("AdminAuthentication.aspx");
             }
 
+            if (!IsPostBack)
+            {
+                // Store the initial scroll position in ViewState
+                ViewState["ScrollPosition"] = Request["ScrollTop"];
+            }
+
             // Only do this if still authenticated
             string familyID = Request.QueryString["famID"].ToString();
             generateFamilyTable(familyID);
@@ -81,7 +87,7 @@ namespace WebApplication1
             cell.CssClass = "title_cell";
             cell.ColumnSpan = 2;
             cell.ID = member.childID.ToString();
-            cell.Text = $"Information for : {member.firstName} {member.lastName}";
+            cell.Text = $"Information for child: {member.childID}";
             row.Cells.Add(cell);
 
             //Row 1
@@ -258,11 +264,22 @@ namespace WebApplication1
                         string first = names[0];
                         string last = names[1];
                         // do code stuff 
+                        bool completed = connections.UpdateChildName(childID, first, last);
+                        if(completed == false)
+                        {
+                            string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                            ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                        }
+                        else
+                        {
+                            string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                            ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                        }    
                         //first and last format - no middle
                     }
                     else
                     {
-                        string script = "setTimeout(function() { alert('Please enter a name in the format of first middle last - spaces required between each word. If there is no middle name, enter the name in first last (one space between words)'); }, 25);";
+                        string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
                         ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
                     }
                 }
@@ -271,6 +288,17 @@ namespace WebApplication1
                     string first = names[0];
                     string middle = names[1];
                     string last = names[2];
+                    bool completed = connections.UpdateChildName(childID, first, last, middle);
+                    if (completed == false)
+                    {
+                        string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                        ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                    }
+                    else
+                    {
+                        string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                        ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                    }
                     // do database stuff
                 }
                 else
@@ -284,7 +312,21 @@ namespace WebApplication1
                 string script = "setTimeout(function() { alert('Please enter a name in the format of first middle last - spaces required between each word. If there is no middle name, enter the name in first last (one space between words)'); }, 25);";
                 ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
             }
-            
+
+            try
+            {
+                // Your SQL-related task here
+
+                // Retrieve the stored scroll position from ViewState
+                int scrollPosition = Convert.ToInt32(ViewState["ScrollPosition"]);
+
+                // Set the scroll position back after the task is executed
+                ScriptManager.RegisterStartupScript(this, GetType(), "setScrollPosition", $"window.scrollTo(0, {scrollPosition});", true);
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+            }
 
         }
 
@@ -305,6 +347,17 @@ namespace WebApplication1
                 }
                 else
                 {
+                    bool completed = connections.updateChildDOB(childID, newDOB);
+                    if (completed == false)
+                    {
+                        string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                        ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                    }
+                    else
+                    {
+                        string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                        ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                    }
                     // do database stuff
                 }
             }
@@ -313,7 +366,22 @@ namespace WebApplication1
                 string script = "setTimeout(function() { alert('Please enter a date in the mm/dd/yyyy format. This is the only accepted format.'); }, 25);";
                 ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
             }
-            
+
+
+            try
+            {
+                // Your SQL-related task here
+
+                // Retrieve the stored scroll position from ViewState
+                int scrollPosition = Convert.ToInt32(ViewState["ScrollPosition"]);
+
+                // Set the scroll position back after the task is executed
+                ScriptManager.RegisterStartupScript(this, GetType(), "setScrollPosition", $"window.scrollTo(0, {scrollPosition});", true);
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+            }
         }
 
         protected void UpdateBaptized_Click(object sender, EventArgs e)
@@ -325,13 +393,39 @@ namespace WebApplication1
             string newBaptized = newBaptizedTB.Text;
             if(newBaptized != string.Empty && ( newBaptized.ToLower().Equals("true") || newBaptized.ToLower().Equals("false")))
             {
+                bool completed =  connections.updateChildBaptized(childID, newBaptized.ToLower());
+                if (completed == false)
+                {
+                    string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                    ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                }
+                else
+                {
+                    string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                    ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                }
                 // do database stuff
             }
             else
             {
                 string script = "setTimeout(function() { alert('Please enter either True or False.'); }, 25);";
                 ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
-            }    
+            }
+
+            try
+            {
+                // Your SQL-related task here
+
+                // Retrieve the stored scroll position from ViewState
+                int scrollPosition = Convert.ToInt32(ViewState["ScrollPosition"]);
+
+                // Set the scroll position back after the task is executed
+                ScriptManager.RegisterStartupScript(this, GetType(), "setScrollPosition", $"window.scrollTo(0, {scrollPosition});", true);
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+            }
         }
 
         protected void UpdateCommunion_Click(object sender, EventArgs e)
@@ -343,12 +437,38 @@ namespace WebApplication1
             string newCommunion = newCommunionTB.Text;
             if (newCommunion != string.Empty && (newCommunion.ToLower().Equals("true") || newCommunion.ToLower().Equals("false")))
             {
+                bool completed = connections.updateChildCommunion(childID, newCommunion.ToLower());
+                if (completed == false)
+                {
+                    string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                    ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                }
+                else
+                {
+                    string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                    ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                }
                 // do database stuff
             }
             else
             {
                 string script = "setTimeout(function() { alert('Please enter either True or False.'); }, 25);";
                 ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+
+            try
+            {
+                // Your SQL-related task here
+
+                // Retrieve the stored scroll position from ViewState
+                int scrollPosition = Convert.ToInt32(ViewState["ScrollPosition"]);
+
+                // Set the scroll position back after the task is executed
+                ScriptManager.RegisterStartupScript(this, GetType(), "setScrollPosition", $"window.scrollTo(0, {scrollPosition});", true);
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
             }
         }
 
@@ -361,12 +481,38 @@ namespace WebApplication1
             string newConfirmed = newConfirmedTB.Text;
             if (newConfirmed!= string.Empty &&( newConfirmed.ToLower().Equals("true") || newConfirmed.ToLower().Equals("false")))
             {
+                bool completed = connections.updateChildConfirmation(childID, newConfirmed.ToLower());
+                if (completed == false)
+                {
+                    string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                    ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                }
+                else
+                {
+                    string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                    ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                }
                 // do database stuff
             }
             else
             {
                 string script = "setTimeout(function() { alert('Please enter either True or False.'); }, 25);";
                 ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+
+            try
+            {
+                // Your SQL-related task here
+
+                // Retrieve the stored scroll position from ViewState
+                int scrollPosition = Convert.ToInt32(ViewState["ScrollPosition"]);
+
+                // Set the scroll position back after the task is executed
+                ScriptManager.RegisterStartupScript(this, GetType(), "setScrollPosition", $"window.scrollTo(0, {scrollPosition});", true);
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
             }
         }
 
@@ -379,12 +525,38 @@ namespace WebApplication1
             string newStatus = newStatusTB.Text;
             if(newStatus != null && newStatus != String.Empty && Convert.ToInt32(newStatus) < 10)
             {
+                bool completed = connections.updateChildStatus(childID, Convert.ToInt32(newStatus));
+                if (completed == false)
+                {
+                    string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                    ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                }
+                else
+                {
+                    string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                    ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                }
                 // do database stuff
             }
             else
             {
                 string script = "setTimeout(function() { alert('Please enter a digit'); }, 25);";
                 ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+
+            try
+            {
+                // Your SQL-related task here
+
+                // Retrieve the stored scroll position from ViewState
+                int scrollPosition = Convert.ToInt32(ViewState["ScrollPosition"]);
+
+                // Set the scroll position back after the task is executed
+                ScriptManager.RegisterStartupScript(this, GetType(), "setScrollPosition", $"window.scrollTo(0, {scrollPosition});", true);
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
             }
         }
         protected void AddressUpdateButton_Click(object sender, EventArgs e)
