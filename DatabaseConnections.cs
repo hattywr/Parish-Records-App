@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.IO.Packaging;
 using Newtonsoft.Json.Linq;
@@ -462,6 +463,103 @@ namespace WebApplication1
             {
                 connection.Close();
             }
+            return success;
+        }
+
+        public bool updateAddress(int familyID, string newAddress)
+        {
+            bool success = false;
+            return success;
+        }
+
+        public bool updateCity(int familyID, string newCity)
+        {
+            bool success = false;
+            return success;
+        }
+
+        public bool updateState(int familyID, string newState)
+        {
+            bool success = false;
+            return success;
+        }
+
+        public bool updateCountry(int familyID, string newCountry)
+        {
+            bool success = false;
+            return success;
+        }
+
+        public bool updateZip(int familyID, string newZip)
+        {
+            bool success = false;
+            return success;
+        }
+
+        public bool updateMarried(int familyID, string newMarried)
+        {
+            bool success = false;
+            return success;
+        }
+        public bool updatePhone1(int familyID, string newPhone)
+        {
+            bool success = false;
+            return success;
+        }
+        public bool updatePhone2(int familyID, string newPhone)
+        {
+            bool success = false;
+            return success;
+        }
+        public bool updatePhone3(int familyID, string newPhone)
+        {
+            bool success = false;
+            return success;
+        }
+        public bool updatePhone4(int familyID, string newPhone)
+        {
+            bool success = false;
+            return success;
+        }
+        public bool updateEmail1(int familyID, string newEmail)
+        {
+            bool success = false;
+            return success;
+        }
+        public bool updateEmail2(int familyID, string newEmail)
+        {
+            bool success = false;
+            return success;
+        }
+
+        public bool updateFbap(int familyID, string newBap)
+        {
+            bool success = false;
+            return success;
+        }
+        public bool updateMbap(int familyID, string newBap)
+        {
+            bool success = false;
+            return success;
+        }
+        public bool updateFcom(int familyID, string newCom)
+        {
+            bool success = false;
+            return success;
+        }
+        public bool updateMcom(int familyID, string newCom)
+        {
+            bool success = false;
+            return success;
+        }
+        public bool updateFconf(int familyID, string newConf)
+        {
+            bool success = false;
+            return success;
+        }
+        public bool updateMconf(int familyID, string newConf)
+        {
+            bool success = false;
             return success;
         }
 

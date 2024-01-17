@@ -561,92 +561,133 @@ namespace WebApplication1
         }
         protected void AddressUpdateButton_Click(object sender, EventArgs e)
         {
+            string familyID = familyIDLabel.Text;
+            string newAddress = AddressTB.Text;
+            connections.updateAddress(Convert.ToInt32(familyID), newAddress);
+
+
 
         }
 
         protected void CityUpdateButton_Click(object sender, EventArgs e)
         {
+            string familyID = familyIDLabel.Text;
+            string newCity = CityTB.Text;
+            connections.updateCity(Convert.ToInt32(familyID), newCity);
 
         }
 
         protected void StateUpdateButton_Click(object sender, EventArgs e)
         {
+            string familyID = familyIDLabel.Text;
+            string newState = StateTB.Text;
+            connections.updateState(Convert.ToInt32(familyID), newState);
 
         }
 
         protected void CountryUpdateButton_Click(object sender, EventArgs e)
         {
-
+            string familyID = familyIDLabel.Text;
+            string newCountry = CountryTB.Text;
+            connections.updateCountry(Convert.ToInt32(familyID), newCountry);
         }
 
         protected void ZipUpdateButton_Click(object sender, EventArgs e)
         {
+            string familyID = familyIDLabel.Text;
+            string newZip = ZipTB.Text;
+            connections.updateZip(Convert.ToInt32(familyID), newZip);
 
         }
 
         protected void marriedUpdateButton_Click(object sender, EventArgs e)
         {
-
+            string familyID = familyIDLabel.Text;
+            string newMarriedDate = marriedTB.Text;
+            connections.updateMarried(Convert.ToInt32(familyID) , newMarriedDate);
         }
 
         protected void phone1UpdateButton_Click(object sender, EventArgs e)
         {
-
+            string familyID = familyIDLabel.Text;
+            string newPhone = phone1TB.Text;
+            connections.updatePhone1(Convert.ToInt32(familyID), newPhone);
         }
 
         protected void phone2UpdateButton_Click(object sender, EventArgs e)
         {
-
+            string familyID = familyIDLabel.Text;
+            string newPhone = phone2TB.Text;
+            connections.updatePhone2(Convert.ToInt32(familyID), newPhone);
         }
 
         protected void phone3UpdateButton_Click(object sender, EventArgs e)
         {
-
+            string familyID = familyIDLabel.Text;
+            string newPhone = phone3TB.Text;
+            connections.updatePhone3(Convert.ToInt32(familyID), newPhone);
         }
 
         protected void phone4UpdateButton_Click(object sender, EventArgs e)
         {
-
+            string familyID = familyIDLabel.Text;
+            string newPhone = phone4TB.Text;
+            connections.updatePhone4(Convert.ToInt32(familyID), newPhone);
         }
 
         protected void email1UpdateButton_Click(object sender, EventArgs e)
         {
-
+            string familyID = familyIDLabel.Text;
+            string newEmail = email1TB.Text;
+            connections.updateEmail1(Convert.ToInt32(familyID), newEmail);
         }
 
         protected void email2UpdateButton_Click(object sender, EventArgs e)
         {
-
+            string familyID = familyIDLabel.Text;
+            string newEmail = email2TB.Text;
+            connections.updateEmail2(Convert.ToInt32(familyID), newEmail);
         }
 
         protected void fbapUpdateButton_Click(object sender, EventArgs e)
         {
-
+            string familyID = familyIDLabel.Text;
+            string newfbap = fbapTB.Text;
+            connections.updateFbap(Convert.ToInt32(familyID), newfbap);
         }
 
         protected void mbapUpdateButton_Click(object sender, EventArgs e)
         {
-
+            string familyID = familyIDLabel.Text;
+            string newmbap = mbapTB.Text;
+            connections.updateMbap(Convert.ToInt32(familyID), newmbap);
         }
 
         protected void fcomUpdateButton_Click(object sender, EventArgs e)
         {
-
+            string familyID = familyIDLabel.Text;
+            string newfcom = fcomTB.Text;
+            connections.updateFcom(Convert.ToInt32(familyID), newfcom);
         }
 
         protected void mcomUpdateButton_Click(object sender, EventArgs e)
         {
-
+            string familyID = familyIDLabel.Text;
+            string newmcom = mcomTB.Text;
+            connections.updateMcom(Convert.ToInt32(familyID), newmcom);
         }
 
         protected void fconfUpdateButton_Click(object sender, EventArgs e)
         {
-
+            string familyID = familyIDLabel.Text;
+            string newfconf = fconfTB.Text;
+            //connections.
         }
 
         protected void mconfUpdateButton_Click(object sender, EventArgs e)
         {
-
+            string familyID = familyIDLabel.Text;
+            string newmconf = mconfTB.Text;
         }
 
         private Control FindControlRecursive(Control root_controls, string id) // find a control in a page
