@@ -5,6 +5,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.IO.Packaging;
 using Newtonsoft.Json.Linq;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 
 namespace WebApplication1
@@ -469,98 +470,676 @@ namespace WebApplication1
         public bool updateAddress(int familyID, string newAddress)
         {
             bool success = false;
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+
+                string query = $"UPDATE BVMFamilies SET address = '{newAddress}' where fid = {familyID}";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
             return success;
         }
 
         public bool updateCity(int familyID, string newCity)
         {
             bool success = false;
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+
+                string query = $"UPDATE BVMFamilies SET city = '{newCity}' where fid = {familyID}";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
             return success;
         }
 
         public bool updateState(int familyID, string newState)
         {
             bool success = false;
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+
+                string query = $"UPDATE BVMFamilies SET state = '{newState}' where fid = {familyID}";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
             return success;
         }
 
         public bool updateCountry(int familyID, string newCountry)
         {
             bool success = false;
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+
+                string query = $"UPDATE BVMFamilies SET country = '{newCountry}' where fid = {familyID}";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
             return success;
         }
 
         public bool updateZip(int familyID, string newZip)
         {
             bool success = false;
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+
+                string query = $"UPDATE BVMFamilies SET postal = '{newZip}' where fid = {familyID}";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
             return success;
         }
 
         public bool updateMarried(int familyID, string newMarried)
         {
             bool success = false;
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+
+                string query = $"UPDATE BVMFamilies SET marrdate = '{newMarried}' where fid = {familyID}";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
             return success;
         }
         public bool updatePhone1(int familyID, string newPhone)
         {
             bool success = false;
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+
+                string query = $"UPDATE BVMFamilies SET phone1 = '{newPhone}' where fid = {familyID}";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
             return success;
         }
         public bool updatePhone2(int familyID, string newPhone)
         {
             bool success = false;
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+
+                string query = $"UPDATE BVMFamilies SET phone2 = '{newPhone}' where fid = {familyID}";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
             return success;
         }
         public bool updatePhone3(int familyID, string newPhone)
         {
             bool success = false;
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+
+                string query = $"UPDATE BVMFamilies SET phone3 = '{newPhone}' where fid = {familyID}";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
             return success;
         }
         public bool updatePhone4(int familyID, string newPhone)
         {
             bool success = false;
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+
+                string query = $"UPDATE BVMFamilies SET phone4 = '{newPhone}' where fid = {familyID}";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
             return success;
         }
         public bool updateEmail1(int familyID, string newEmail)
         {
             bool success = false;
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+
+                string query = $"UPDATE BVMFamilies SET email1 = '{newEmail}' where fid = {familyID}";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
             return success;
         }
         public bool updateEmail2(int familyID, string newEmail)
         {
             bool success = false;
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+
+                string query = $"UPDATE BVMFamilies SET email2 = '{newEmail}' where fid = {familyID}";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
             return success;
         }
 
         public bool updateFbap(int familyID, string newBap)
         {
             bool success = false;
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+
+                string query = $"UPDATE BVMFamilies SET fbap = '{newBap}' where fid = {familyID}";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
             return success;
         }
         public bool updateMbap(int familyID, string newBap)
         {
             bool success = false;
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+
+                string query = $"UPDATE BVMFamilies SET mbap = '{newBap}' where fid = {familyID}";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
             return success;
         }
         public bool updateFcom(int familyID, string newCom)
         {
             bool success = false;
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+
+                string query = $"UPDATE BVMFamilies SET fcom = '{newCom}' where fid = {familyID}";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
             return success;
         }
         public bool updateMcom(int familyID, string newCom)
         {
             bool success = false;
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+
+                string query = $"UPDATE BVMFamilies SET mcom = '{newCom}' where fid = {familyID}";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
             return success;
         }
         public bool updateFconf(int familyID, string newConf)
         {
             bool success = false;
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+
+                string query = $"UPDATE BVMFamilies SET fconf = '{newConf}' where fid = {familyID}";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
             return success;
         }
         public bool updateMconf(int familyID, string newConf)
         {
             bool success = false;
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+
+                string query = $"UPDATE BVMFamilies SET mconf = '{newConf}' where fid = {familyID}";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
             return success;
+        }
+
+        public bool createNewFamily()
+        {
+            bool success = false;
+            return success;
+        }
+
+
+        public bool addChildToFamily(int familyID, 
+                                    string firstName, 
+                                    string middleName, 
+                                    string lastName, 
+                                    string DOB, 
+                                    string baptized, 
+                                    string communion, 
+                                    string confirmation) 
+        {
+            int status = 1;
+            int newChildID = -1;
+            bool success = false;
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+                string IDQuery = $"Select MAX(chid) as MaxChildID from BVMChildren";
+
+                using (SqlCommand command = new SqlCommand(IDQuery, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+                            // get the max child ID, add 1 for the new Child
+                            newChildID = Convert.ToInt32(reader["MaxChildID"].ToString()) + 1;
+                        }
+                    }
+                }
+
+
+                string query = $"INSERT INTO BVMChildren (chid, fid, fname, lname, title, mname, dob, baptized, fstcomm, confirm, status, ts) " +
+                    $"VALUES ({newChildID} ,{familyID}, '{firstName}', '{lastName}', NULL, '{middleName}', '{DOB}', '{baptized}', '{communion}', '{confirmation}', " +
+                    $"{status}, NULL) ";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                success=false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return success;
+
+            
+            
         }
 
 

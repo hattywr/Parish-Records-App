@@ -20,6 +20,13 @@
            
        </asp:TableRow>
 
+       <asp:TableRow runat="server" CssClass="content_row">
+           <asp:TableCell runat="server" Text="Add Family" CssClass="content_cell"></asp:TableCell>
+           <asp:TableCell runat="server" CssClass="content_cell">
+               <asp:Button runat="server" ID="showFamilyTableButton" CssClass="button_style" Text="Add Family" OnClick="showFamilyTableButton_Click" style="width:25%; vertical-align:middle; margin-left:5%" />
+           </asp:TableCell>
+       </asp:TableRow>
+
 
    </asp:Table>
 

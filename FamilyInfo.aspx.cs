@@ -7,6 +7,8 @@ namespace WebApplication1
     public partial class FamilyInfo : System.Web.UI.Page
     {
         DatabaseConnections connections = new DatabaseConnections();
+        Family currentFamily;
+        string familyID;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["authenticated"] != null)
@@ -22,16 +24,26 @@ namespace WebApplication1
             {
                 Response.Redirect("AdminAuthentication.aspx");
             }
+            familyID = Request.QueryString["famID"].ToString();
+
+            currentFamily = connections.createFamily(familyID);
 
             if (!IsPostBack)
             {
                 // Store the initial scroll position in ViewState
                 ViewState["ScrollPosition"] = Request["ScrollTop"];
+                // Only do this if still authenticated
+                
+                generateFamilyTable();
             }
 
-            // Only do this if still authenticated
-            string familyID = Request.QueryString["famID"].ToString();
-            generateFamilyTable(familyID);
+
+            foreach (FamilyMember member in currentFamily.members)
+            {
+                generateChildTable(member);
+            }
+
+
 
         }
 
@@ -41,35 +53,28 @@ namespace WebApplication1
             Response.Redirect("AdminAuthentication.aspx");
         }
 
-        protected void generateFamilyTable(string famID)
+        protected void generateFamilyTable()
         {
-            familyIDLabel.Text = famID;
-            Family family = connections.createFamily(famID);
-            parentNameLabel.Text = $"{family.fatherName} & {family.motherName} {family.familyLastName}";
-            AddressTB.Text = family.familyAddress;
-            CityTB.Text = family.familyCity;
-            StateTB.Text = family.familyState;
-            CountryTB.Text = family.familyCountry;
-            ZipTB.Text = family.familyZIP;
-            marriedTB.Text = family.marriedDate;
-            phone1TB.Text = family.phoneOne;
-            phone2TB.Text = family.phoneTwo;
-            phone3TB.Text = family.phoneThree;
-            phone4TB.Text = family.phoneFour;
-            email1TB.Text = family.emailOne;
-            email2TB.Text = family.emailTwo;
-            fbapTB.Text = family.fatherBaptized.Replace(" ", "");
-            mbapTB.Text = family.motherBaptized.Replace(" ", "");
-            fcomTB.Text = family.fatherCommunion.Replace(" ", "");
-            mcomTB.Text = family.motherCommunion.Replace(" ", "");
-            fconfTB.Text = family.fatherConfirmed.Replace(" ", "");
-            mconfTB.Text = family.motherConfirmed.Replace(" ", "");
-
-
-            foreach (FamilyMember member in  family.members)
-            {
-                generateChildTable(member);
-            }
+            familyIDLabel.Text = familyID;
+            parentNameLabel.Text = $"{currentFamily.fatherName} & {currentFamily.motherName} {currentFamily.familyLastName}";
+            AddressTB.Text = currentFamily.familyAddress;
+            CityTB.Text = currentFamily.familyCity;
+            StateTB.Text = currentFamily.familyState;
+            CountryTB.Text = currentFamily.familyCountry;
+            ZipTB.Text = currentFamily.familyZIP;
+            marriedTB.Text = currentFamily.marriedDate;
+            phone1TB.Text = currentFamily.phoneOne;
+            phone2TB.Text = currentFamily.phoneTwo;
+            phone3TB.Text = currentFamily.phoneThree;
+            phone4TB.Text = currentFamily.phoneFour;
+            email1TB.Text = currentFamily.emailOne;
+            email2TB.Text = currentFamily.emailTwo;
+            fbapTB.Text = currentFamily.fatherBaptized.Replace(" ", "");
+            mbapTB.Text = currentFamily.motherBaptized.Replace(" ", "");
+            fcomTB.Text = currentFamily.fatherCommunion.Replace(" ", "");
+            mcomTB.Text = currentFamily.motherCommunion.Replace(" ", "");
+            fconfTB.Text = currentFamily.fatherConfirmed.Replace(" ", "");
+            mconfTB.Text = currentFamily.motherConfirmed.Replace(" ", "");
         }
 
 
@@ -253,7 +258,7 @@ namespace WebApplication1
             string buttonId = button.ID; // retrieve the button ID
             string childID = buttonId.Replace("UpdateName", ""); // strip extra string to get childID
             TextBox newNameTB = (TextBox)FindControlRecursive(Page, childID + "NameTB");
-            string newName = newNameTB.Text;
+            string newName = newNameTB.Text.Replace(";","");
             if(newName != string.Empty)
             {
                 String[] names = newName.Split(' ');
@@ -336,7 +341,7 @@ namespace WebApplication1
             string buttonId = button.ID; // retrieve the button ID
             string childID = buttonId.Replace("UpdateDOB", "");
             TextBox newDOBTB = (TextBox)FindControlRecursive(Page, childID + "DOBTB");
-            string newDOB = newDOBTB.Text;
+            string newDOB = newDOBTB.Text.Replace(";", "");
             if(newDOB != string.Empty)
             {
                 String[] date = newDOB.Split('/');
@@ -390,7 +395,7 @@ namespace WebApplication1
             string buttonId = button.ID; // retrieve the button ID
             string childID = buttonId.Replace("UpdateBaptized", "");
             TextBox newBaptizedTB = (TextBox)FindControlRecursive(Page, childID + "BaptizedTB");
-            string newBaptized = newBaptizedTB.Text;
+            string newBaptized = newBaptizedTB.Text.Replace(";", "");
             if(newBaptized != string.Empty && ( newBaptized.ToLower().Equals("true") || newBaptized.ToLower().Equals("false")))
             {
                 bool completed =  connections.updateChildBaptized(childID, newBaptized.ToLower());
@@ -434,7 +439,7 @@ namespace WebApplication1
             string buttonId = button.ID; // retrieve the button ID
             string childID = buttonId.Replace("UpdateCommunion", "");
             TextBox newCommunionTB = (TextBox)FindControlRecursive(Page, childID + "FirstCommunionTB");
-            string newCommunion = newCommunionTB.Text;
+            string newCommunion = newCommunionTB.Text.Replace(";", "");
             if (newCommunion != string.Empty && (newCommunion.ToLower().Equals("true") || newCommunion.ToLower().Equals("false")))
             {
                 bool completed = connections.updateChildCommunion(childID, newCommunion.ToLower());
@@ -478,7 +483,7 @@ namespace WebApplication1
             string buttonId = button.ID; // retrieve the button ID
             string childID = buttonId.Replace("UpdateConfirmed", "");
             TextBox newConfirmedTB = (TextBox)FindControlRecursive(Page, childID + "ConfirmedTB");
-            string newConfirmed = newConfirmedTB.Text;
+            string newConfirmed = newConfirmedTB.Text.Replace(";", "");
             if (newConfirmed!= string.Empty &&( newConfirmed.ToLower().Equals("true") || newConfirmed.ToLower().Equals("false")))
             {
                 bool completed = connections.updateChildConfirmation(childID, newConfirmed.ToLower());
@@ -522,7 +527,7 @@ namespace WebApplication1
             string buttonId = button.ID; // retrieve the button ID
             string childID = buttonId.Replace("UpdateStatus", "");
             TextBox newStatusTB = (TextBox)FindControlRecursive(Page, childID + "StatusTB");
-            string newStatus = newStatusTB.Text;
+            string newStatus = newStatusTB.Text.Replace(";", "");
             if(newStatus != null && newStatus != String.Empty && Convert.ToInt32(newStatus) < 10)
             {
                 bool completed = connections.updateChildStatus(childID, Convert.ToInt32(newStatus));
@@ -562,9 +567,18 @@ namespace WebApplication1
         protected void AddressUpdateButton_Click(object sender, EventArgs e)
         {
             string familyID = familyIDLabel.Text;
-            string newAddress = AddressTB.Text;
-            connections.updateAddress(Convert.ToInt32(familyID), newAddress);
-
+            string newAddress = AddressTB.Text.Replace(";", "");
+            bool completed = connections.updateAddress(Convert.ToInt32(familyID), newAddress);
+            if (completed == false)
+            {
+                string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
 
 
         }
@@ -572,122 +586,290 @@ namespace WebApplication1
         protected void CityUpdateButton_Click(object sender, EventArgs e)
         {
             string familyID = familyIDLabel.Text;
-            string newCity = CityTB.Text;
-            connections.updateCity(Convert.ToInt32(familyID), newCity);
-
+            string newCity = CityTB.Text.Replace(";", "");
+            bool completed = connections.updateCity(Convert.ToInt32(familyID), newCity);
+            if (completed == false)
+            {
+                string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
         }
 
         protected void StateUpdateButton_Click(object sender, EventArgs e)
         {
             string familyID = familyIDLabel.Text;
-            string newState = StateTB.Text;
-            connections.updateState(Convert.ToInt32(familyID), newState);
-
+            string newState = StateTB.Text.Replace(";", "");
+            bool completed = connections.updateState(Convert.ToInt32(familyID), newState);
+            if (completed == false)
+            {
+                string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
         }
 
         protected void CountryUpdateButton_Click(object sender, EventArgs e)
         {
             string familyID = familyIDLabel.Text;
-            string newCountry = CountryTB.Text;
-            connections.updateCountry(Convert.ToInt32(familyID), newCountry);
+            string newCountry = CountryTB.Text.Replace(";", "");
+            bool completed = connections.updateCountry(Convert.ToInt32(familyID), newCountry);
+            if (completed == false)
+            {
+                string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
         }
 
         protected void ZipUpdateButton_Click(object sender, EventArgs e)
         {
             string familyID = familyIDLabel.Text;
-            string newZip = ZipTB.Text;
-            connections.updateZip(Convert.ToInt32(familyID), newZip);
-
+            string newZip = ZipTB.Text.Replace(";", "");
+            bool completed = connections.updateZip(Convert.ToInt32(familyID), newZip);
+            if (completed == false)
+            {
+                string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
         }
 
         protected void marriedUpdateButton_Click(object sender, EventArgs e)
         {
             string familyID = familyIDLabel.Text;
-            string newMarriedDate = marriedTB.Text;
-            connections.updateMarried(Convert.ToInt32(familyID) , newMarriedDate);
+            string newMarriedDate = marriedTB.Text.Replace(";", "");
+            bool completed = connections.updateMarried(Convert.ToInt32(familyID), newMarriedDate);
+            if (completed == false)
+            {
+                string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
         }
 
         protected void phone1UpdateButton_Click(object sender, EventArgs e)
         {
             string familyID = familyIDLabel.Text;
-            string newPhone = phone1TB.Text;
-            connections.updatePhone1(Convert.ToInt32(familyID), newPhone);
+            string newPhone = phone1TB.Text.Replace(";", "");
+            bool completed = connections.updatePhone1(Convert.ToInt32(familyID), newPhone);
+            if (completed == false)
+            {
+                string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
         }
 
         protected void phone2UpdateButton_Click(object sender, EventArgs e)
         {
             string familyID = familyIDLabel.Text;
-            string newPhone = phone2TB.Text;
-            connections.updatePhone2(Convert.ToInt32(familyID), newPhone);
+            string newPhone = phone2TB.Text.Replace(";", "");
+            bool completed = connections.updatePhone2(Convert.ToInt32(familyID), newPhone);
+            if (completed == false)
+            {
+                string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
         }
 
         protected void phone3UpdateButton_Click(object sender, EventArgs e)
         {
             string familyID = familyIDLabel.Text;
-            string newPhone = phone3TB.Text;
-            connections.updatePhone3(Convert.ToInt32(familyID), newPhone);
+            string newPhone = phone3TB.Text.Replace(";", "");
+            bool completed = connections.updatePhone3(Convert.ToInt32(familyID), newPhone);
+            if (completed == false)
+            {
+                string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
         }
 
         protected void phone4UpdateButton_Click(object sender, EventArgs e)
         {
             string familyID = familyIDLabel.Text;
-            string newPhone = phone4TB.Text;
-            connections.updatePhone4(Convert.ToInt32(familyID), newPhone);
+            string newPhone = phone4TB.Text.Replace(";", "");
+            bool completed = connections.updatePhone4(Convert.ToInt32(familyID), newPhone);
+            if (completed == false)
+            {
+                string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
         }
 
         protected void email1UpdateButton_Click(object sender, EventArgs e)
         {
             string familyID = familyIDLabel.Text;
-            string newEmail = email1TB.Text;
-            connections.updateEmail1(Convert.ToInt32(familyID), newEmail);
+            string newEmail = email1TB.Text.Replace(";", "");
+            bool completed = connections.updateEmail1(Convert.ToInt32(familyID), newEmail);
+            if (completed == false)
+            {
+                string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
         }
 
         protected void email2UpdateButton_Click(object sender, EventArgs e)
         {
             string familyID = familyIDLabel.Text;
-            string newEmail = email2TB.Text;
-            connections.updateEmail2(Convert.ToInt32(familyID), newEmail);
+            string newEmail = email2TB.Text.Replace(";", "");
+            bool completed = connections.updateEmail2(Convert.ToInt32(familyID), newEmail);
+            if (completed == false)
+            {
+                string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
         }
 
         protected void fbapUpdateButton_Click(object sender, EventArgs e)
         {
             string familyID = familyIDLabel.Text;
-            string newfbap = fbapTB.Text;
-            connections.updateFbap(Convert.ToInt32(familyID), newfbap);
+            string newfbap = fbapTB.Text.Replace(";", "");
+            bool completed = connections.updateFbap(Convert.ToInt32(familyID), newfbap);
+            if (completed == false)
+            {
+                string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
         }
 
         protected void mbapUpdateButton_Click(object sender, EventArgs e)
         {
             string familyID = familyIDLabel.Text;
-            string newmbap = mbapTB.Text;
-            connections.updateMbap(Convert.ToInt32(familyID), newmbap);
+            string newmbap = mbapTB.Text.Replace(";", "");
+            bool completed = connections.updateMbap(Convert.ToInt32(familyID), newmbap);
+            if (completed == false)
+            {
+                string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
         }
 
         protected void fcomUpdateButton_Click(object sender, EventArgs e)
         {
             string familyID = familyIDLabel.Text;
-            string newfcom = fcomTB.Text;
-            connections.updateFcom(Convert.ToInt32(familyID), newfcom);
+            string newfcom = fcomTB.Text.Replace(";", "");
+            bool completed = connections.updateFcom(Convert.ToInt32(familyID), newfcom);
+            if (completed == false)
+            {
+                string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
         }
 
         protected void mcomUpdateButton_Click(object sender, EventArgs e)
         {
             string familyID = familyIDLabel.Text;
-            string newmcom = mcomTB.Text;
-            connections.updateMcom(Convert.ToInt32(familyID), newmcom);
+            string newmcom = mcomTB.Text.Replace(";", "");
+            bool completed = connections.updateMcom(Convert.ToInt32(familyID), newmcom);
+            if (completed == false)
+            {
+                string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
         }
 
         protected void fconfUpdateButton_Click(object sender, EventArgs e)
         {
             string familyID = familyIDLabel.Text;
-            string newfconf = fconfTB.Text;
-            //connections.
+            string newfconf = fconfTB.Text.Replace(";", "");
+            bool completed = connections.updateFconf(Convert.ToInt32(familyID), newfconf);
+            if (completed == false)
+            {
+                string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
         }
 
         protected void mconfUpdateButton_Click(object sender, EventArgs e)
         {
             string familyID = familyIDLabel.Text;
-            string newmconf = mconfTB.Text;
+            string newmconf = mconfTB.Text.Replace(";", "");
+            bool completed = connections.updateMconf(Convert.ToInt32(familyID), newmconf);
+            if (completed == false)
+            {
+                string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Record successfully updated!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
         }
 
         private Control FindControlRecursive(Control root_controls, string id) // find a control in a page
@@ -707,6 +889,74 @@ namespace WebApplication1
             }
 
             return null; // no controls that matched the wanted one were found
+        }
+
+        protected void addChildButton_Click(object sender, EventArgs e)
+        {
+            addChildTable.Visible = true;
+        }
+
+        protected void saveChildButton_Click(object sender, EventArgs e)
+        {
+            bool allFilled = checkIfAnyNull();
+            if(allFilled)
+            {
+                String[] date = dobTB.Text.Split('/');
+                if (date.Length != 3)
+                {
+                    string script = "setTimeout(function() { alert('Please enter a date in the mm/dd/yyyy format. This is the only accepted format.'); }, 25);";
+                    ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                }
+                else
+                {
+                    int familyID = Convert.ToInt32(familyIDLabel.Text);
+                    string first = firstNameTB.Text.Replace(";", "");
+                    string middle = middleNameTB.Text.Replace(";", "");
+                    string last = lastNameTB.Text.Replace(";", "");
+                    string DOB = dobTB.Text.Replace(";", "");
+                    string baptized = baptizedTB.Text.Replace(";", "");
+                    string fstCommunion = fstCommTB.Text.Replace(";", "");
+                    string confirmation = confirmTB.Text.Replace(";", "");
+                    bool completed = connections.addChildToFamily(familyID, first, middle, last, DOB, baptized, fstCommunion, confirmation);
+                    if (completed == false)
+                    {
+                        string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                        ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+
+
+                    }
+                    else
+                    {
+                        string script = "setTimeout(function() { alert('Child SuccessFully Added!'); }, 25);";
+                        ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                        Response.Redirect(Request.RawUrl);
+                    }
+                }
+
+                
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Please ensure all boxes are filled in before adding the child!!!!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                //message to user - FILL IN BOXES PLEASE
+            }
+        }
+
+        private bool checkIfAnyNull()
+        {
+            if(firstNameTB.Text.Replace(";", "").Length != 0 
+                && middleNameTB.Text.Replace(";", "").Length != 0
+                && lastNameTB.Text.Replace(";", "").Length != 0
+                && dobTB.Text.Replace(";", "").Length != 0
+                && baptizedTB.Text.Replace(";", "").Length != 0
+                && fstCommTB.Text.Replace(";", "").Length != 0
+                && confirmTB.Text.Replace(";", "").Length != 0) 
+            { 
+                return true;
+            }
+
+            return false;
         }
     }
 }

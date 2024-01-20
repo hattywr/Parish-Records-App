@@ -176,8 +176,81 @@
 
     </asp:Table>
 
+      <asp:Table ID="childTable" runat="server" CssClass="contents_table" >
+              <asp:TableRow runat="server" CssClass="content_row">
+                    <asp:TableCell runat="server" Text ="Add Child" CssClass="left_content_cell"></asp:TableCell>
+                    <asp:TableCell runat="server" ID="AddChildCell" CssClass="right_content_cell">
+                        <asp:Button runat="server" ID="addChildButton" Text="Add Child" CssClass="button_style" OnClick="addChildButton_Click" />
+                    </asp:TableCell>
+                </asp:TableRow>
+    </asp:Table>
+
+    <asp:Table ID="addChildTable" runat="server" CssClass="contents_table" Visible="false">
+        <asp:TableRow runat="server" CssClass="table_title">
+            <asp:TableCell runat="server" Text="Please enter all necessary details for the new child" ColumnSpan="2" CssClass="title_cell"></asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow runat="server" CssClass="content_row">
+            <asp:TableCell runat="server" Text="First Name" CssClass="left_content_cell"></asp:TableCell>
+            <asp:TableCell runat="server" CssClass="right_content_cell">
+                <asp:TextBox runat="server" ID="firstNameTB" CssClass="textbox"></asp:TextBox>
+            </asp:TableCell>
+        </asp:TableRow>
+
+        <asp:TableRow runat="server" CssClass="content_row">
+            <asp:TableCell runat="server" Text="Middle Name" CssClass="left_content_cell"></asp:TableCell>
+            <asp:TableCell runat="server" CssClass="right_content_cell">
+                <asp:TextBox runat="server" ID="middleNameTB" CssClass="textbox"></asp:TextBox>
+            </asp:TableCell>
+        </asp:TableRow>
+
+        <asp:TableRow runat="server" CssClass="content_row">
+            <asp:TableCell runat="server" Text="Last Name" CssClass="left_content_cell"></asp:TableCell>
+            <asp:TableCell runat="server" CssClass="right_content_cell">
+                <asp:TextBox runat="server" ID="lastNameTB" CssClass="textbox"></asp:TextBox>
+            </asp:TableCell>
+        </asp:TableRow>
+
+        <asp:TableRow runat="server" CssClass="content_row">
+            <asp:TableCell runat="server" Text="DOB" CssClass="left_content_cell"></asp:TableCell>
+            <asp:TableCell runat="server" CssClass="right_content_cell">
+                <asp:TextBox runat="server" ID="dobTB" CssClass="textbox"></asp:TextBox>
+            </asp:TableCell>
+        </asp:TableRow>
+
+        <asp:TableRow runat="server" CssClass="content_row">
+            <asp:TableCell runat="server" Text="Baptized? (1 = Yes, 0 = No)" CssClass="left_content_cell"></asp:TableCell>
+            <asp:TableCell runat="server" CssClass="right_content_cell">
+                <asp:TextBox runat="server" ID="baptizedTB" CssClass="textbox"></asp:TextBox>
+            </asp:TableCell>
+        </asp:TableRow>
+
+        <asp:TableRow runat="server" CssClass="content_row">
+            <asp:TableCell runat="server" Text="First Communion? (1 = Yes, 0 = No)" CssClass="left_content_cell"></asp:TableCell>
+            <asp:TableCell runat="server" CssClass="right_content_cell">
+                <asp:TextBox runat="server" ID="fstCommTB" CssClass="textbox"></asp:TextBox>
+            </asp:TableCell>
+        </asp:TableRow>
+
+        <asp:TableRow runat="server" CssClass="content_row">
+            <asp:TableCell runat="server" Text="Confirmed? (1 = Yes, 0 = No)" CssClass="left_content_cell"></asp:TableCell>
+            <asp:TableCell runat="server" CssClass="right_content_cell">
+                <asp:TextBox runat="server" ID="confirmTB" CssClass="textbox"></asp:TextBox>
+            </asp:TableCell>
+        </asp:TableRow>
+
+        <asp:TableRow runat="server" CssClass="content_row">
+            <asp:TableCell runat="server" Text="Please press 'Save' to add the child." CssClass="left_content_cell"></asp:TableCell>
+            <asp:TableCell runat="server" CssClass="right_content_cell">
+                <asp:Button runat="server" ID="saveChildButton" Text="Save" CssClass="login_button" OnClick="saveChildButton_Click" />
+            </asp:TableCell>
+        </asp:TableRow>
+    </asp:Table>
+    
+
      <asp:PlaceHolder runat="server" ID="childrenTablePlaceHolder"></asp:PlaceHolder>
      </asp:Content>
+
+
 
 <asp:Content ID="secondaryContent" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <asp:Button ID="logout_button" runat="server" Text="Logout" CssClass="button_style" OnClick="logout_button_Click" style="margin-inline:4.9em; margin-top:2em" />

@@ -93,5 +93,10 @@ namespace WebApplication1
 
 
         }
+
+        protected void showFamilyTableButton_Click(object sender, EventArgs e)
+        {
+            parentOptionsTable.Visible = false;
+        }
     }
 }
