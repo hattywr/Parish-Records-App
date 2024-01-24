@@ -97,6 +97,50 @@ namespace WebApplication1
         protected void showFamilyTableButton_Click(object sender, EventArgs e)
         {
             parentOptionsTable.Visible = false;
+            FamilyInformationTable.Visible = true;
+        }
+
+        protected void addFamilyCompleted_Click(object sender, EventArgs e)
+        {
+            bool goodInput = checkFamilyInputs();
+        }
+
+        protected bool checkFamilyInputs()
+        {
+            if((fatherNameTB.Text == "First Middle-Initial Last or First Last" || fatherNameTB.Text == "") 
+                && (motherNameTB.Text == "First Middle-Initial Last or First Last" || motherNameTB.Text == ""))
+            {
+                return false;
+            }
+            else if ((fatherOccupationTB.Text == "Enter Father's Occupation" || fatherOccupationTB.Text == "")
+                && (motherOccupationTB.Text == "Enter Mother's Occupation" || motherOccupationTB.Text == ""))
+            {
+                return false;
+            }
+            else if (
+                   AddressTB.Text == "" 
+                || CityTB.Text == ""
+                || StateTB.Text == ""
+                || CountryTB.Text == ""
+                || ZipTB.Text == ""
+                || phone1TB.Text == ""
+                || phone2TB.Text == ""
+                || phone3TB.Text == ""
+                || phone4TB.Text == ""
+                || email1TB.Text == ""
+                || email2TB.Text == ""
+                || (fbapTB.Text == "YES or NO" || fbapTB.Text == "")
+                || (mbapTB.Text == "YES or NO" || mbapTB.Text == "")
+                || (fcomTB.Text == "YES or NO" || fcomTB.Text == "")
+                || (mcomTB.Text == "YES or NO" || mcomTB.Text == "")
+                || (fconfTB.Text == "YES or NO" || fconfTB.Text == "")
+                || (mconfTB.Text == "YES or NO" || mconfTB.Text == ""))
+            {
+                return false;
+            }
+
+
+                return true;
         }
     }
 }
