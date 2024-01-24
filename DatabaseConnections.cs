@@ -1068,9 +1068,138 @@ namespace WebApplication1
             return success;
         }
 
-        public bool createNewFamily()
+        public bool createNewFamily(
+            string fatherName = null,
+            string motherName = null,
+            string fatherOcc = null,
+            string motherOcc = null,
+            string address = null,
+            string city = null,
+            string state = null,
+            string country = null,
+            string ZIP = null,
+            string phone1 = null,
+            string phone2 = null,
+            string phone3 = null,
+            string phone4 = null,
+            string email1 = null,
+            string email2 = null,
+            string fatherBap = null,
+            string motherBap = null,
+            string fatherCom = null,
+            string motherCom = null,
+            string fatherConf = null,
+            string motherConf = null,
+            string marriedDate = null)
         {
             bool success = false;
+            string fatherFirst = string.Empty;
+            string fatherMiddle = string.Empty;
+            string fatherLast = string.Empty;
+
+            string motherFirst = string.Empty;
+            string motherMiddle = string.Empty;
+            string motherLast = string.Empty;
+
+            string[] fatherNames = fatherName.Split(' ');
+            if(fatherNames.Length == 3)
+            {
+                fatherFirst = fatherNames[0];
+                fatherMiddle = fatherNames[1];
+                fatherLast = fatherNames[2];
+            }
+            else if(fatherNames.Length == 2)
+            {
+                fatherFirst = fatherNames[0];
+                fatherLast = fatherNames[1];
+            }
+            string[] motherNames = motherName.Split(' ');
+            if (motherNames.Length == 3)
+            {
+                motherFirst = motherNames[0];
+                motherMiddle = motherNames[1];
+                motherLast = motherNames[2];
+            }
+            else if (motherNames.Length == 2)
+            {
+                motherFirst = motherNames[0];
+                motherLast = motherNames[1];
+            }
+
+
+            try
+            {
+                int maxFamID = 0;
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+                string IDQuery = $"Select MAX(fid) as MaxFamilyID from BVMChildren";
+
+                using (SqlCommand command = new SqlCommand(IDQuery, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+                            // get the max child ID, add 1 for the new Child
+                            maxFamID = Convert.ToInt32(reader["MaxFamilyID"].ToString()) + 1;
+                        }
+                    }
+                }
+
+
+                string query = $"INSERT INTO BVMFamilies (fid, sir, fathName, mothName, parents, occupationF, occupationM, address, city, state, country, postal, phone1, phone2, phone3, phone4, email1, email2, marrDate, fbap, fcom, fconf, mbap, mcom, mconf) " +
+                    $"VALUES ({maxFamID}, " +
+                    $"'{fatherLast}'," +
+                    $"'{fatherFirst}'," +
+                    $"'{motherFirst}'," +
+                    $"'{fatherFirst + " " + fatherMiddle + " " + motherFirst + " " + motherMiddle }'," +
+                    $"' {fatherOcc} '," +
+                    $"' {motherOcc} '," +
+                    $"' {address} '," +
+                    $"' {city} '," +
+                    $"' {state} '   ," +
+                    $"' {country} '," +
+                    $"' {ZIP} '," +
+                    $"' {phone1} '," +
+                    $"' {phone2} '," +
+                    $"' {phone3} '," +
+                    $"' {phone4} '," +
+                    $"'  {email1}  '," +
+                    $"'  {email2}  '," +
+                    $"'  {marriedDate}  '," +
+                    $"'   {fatherBap}   '," +
+                    $"'   {fatherCom}   '," +
+                    $"'   {fatherConf}   '," +
+                    $"'   {motherBap}   '," +
+                    $"'   {motherCom}   '," +
+                    $"'{motherConf}');";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                success = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
             return success;
         }
 

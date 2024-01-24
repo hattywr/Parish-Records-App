@@ -103,6 +103,53 @@ namespace WebApplication1
         protected void addFamilyCompleted_Click(object sender, EventArgs e)
         {
             bool goodInput = checkFamilyInputs();
+            if(goodInput == true)
+            {
+                bool completed = connections.createNewFamily(
+                fatherNameTB.Text,
+                motherNameTB.Text,
+                fatherOccupationTB.Text,
+                motherOccupationTB.Text,
+                AddressTB.Text,
+                CityTB.Text,
+                StateTB.Text,
+                CountryTB.Text,
+                ZipTB.Text,
+                phone1TB.Text,
+                phone2TB.Text,
+                phone3TB.Text,
+                phone4TB.Text,
+                email1TB.Text,
+                email2TB.Text,
+                fbapTB.Text,
+                mbapTB.Text,
+                fcomTB.Text,
+                mcomTB.Text,
+                fconfTB.Text,
+                mconfTB.Text,
+                marriedTB.Text);
+
+                if (completed == false)
+                {
+                    string script = "setTimeout(function() { alert('An error occurred, please try again!'); }, 25);";
+                    ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+
+
+                }
+                else
+                {
+                    string script = "setTimeout(function() { alert('Family SuccessFully Created!'); }, 25);";
+                    ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+                    Response.Redirect(Request.RawUrl);
+                }
+            }
+            else
+            {
+                string script = "setTimeout(function() { alert('Please fill in all required field! If the individual is single, leave their partner fields as they are!'); }, 25);";
+                ClientScript.RegisterStartupScript(this.GetType(), "MyScript", script, true);
+            }
+            
+
         }
 
         protected bool checkFamilyInputs()
@@ -124,21 +171,59 @@ namespace WebApplication1
                 || CountryTB.Text == ""
                 || ZipTB.Text == ""
                 || phone1TB.Text == ""
-                || phone2TB.Text == ""
-                || phone3TB.Text == ""
-                || phone4TB.Text == ""
                 || email1TB.Text == ""
-                || email2TB.Text == ""
-                || (fbapTB.Text == "YES or NO" || fbapTB.Text == "")
-                || (mbapTB.Text == "YES or NO" || mbapTB.Text == "")
-                || (fcomTB.Text == "YES or NO" || fcomTB.Text == "")
-                || (mcomTB.Text == "YES or NO" || mcomTB.Text == "")
-                || (fconfTB.Text == "YES or NO" || fconfTB.Text == "")
-                || (mconfTB.Text == "YES or NO" || mconfTB.Text == ""))
+                || ((fbapTB.Text == "YES or NO" || fbapTB.Text == "") && (mbapTB.Text == "YES or NO" || mbapTB.Text == ""))
+                || ((fcomTB.Text == "YES or NO" || fcomTB.Text == "") && (mcomTB.Text == "YES or NO" || mcomTB.Text == ""))
+                || ((fconfTB.Text == "YES or NO" || fconfTB.Text == "") && (mconfTB.Text == "YES or NO" || mconfTB.Text == ""))
+                )
             {
                 return false;
             }
+            if(fatherNameTB.Text == "First Middle-Initial Last or First Last")
+            {
+                fatherNameTB.Text = "";
 
+            }
+            if(motherNameTB.Text == "First Middle-Initial Last or First Last")
+            {
+                motherNameTB.Text = "";
+            }
+            if(fatherOccupationTB.Text == "Enter Father's Occupation")
+            {
+                fatherOccupationTB.Text = "";
+            }
+            if(motherOccupationTB.Text == "Enter Mother's Occupation")
+            {
+                motherOccupationTB.Text = "";
+            }
+            if(fbapTB.Text == "YES or NO")
+            {
+                fbapTB.Text = "";
+            }
+            if(mbapTB.Text == "YES or NO")
+            {
+                mbapTB.Text = "";
+            }
+            if(fcomTB.Text == "YES or NO")
+            {
+                fcomTB.Text = "";
+            }
+            if(mcomTB.Text == "YES or NO")
+            {
+                mcomTB.Text = "";
+            }
+            if(fconfTB.Text == "YES or NO")
+            {
+                fconfTB.Text = "";
+            }
+            if(mconfTB.Text == "YES or NO")
+            {
+                mconfTB.Text = "";
+            }
+            if(marriedTB.Text == "yyyy/mm/dd")
+            {
+                marriedTB.Text = "";
+            }
 
                 return true;
         }
