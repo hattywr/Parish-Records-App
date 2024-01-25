@@ -13,7 +13,7 @@ namespace WebApplication1
         protected void Page_Load(object sender, EventArgs e)
         {
             // temporary for testing purposes only
-            Session["authenticated"] = true;
+            //Session["authenticated"] = true;
 
             if (Session["authenticated"] != null)
             {

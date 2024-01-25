@@ -56,7 +56,15 @@ namespace WebApplication1
         protected void generateFamilyTable()
         {
             familyIDLabel.Text = familyID;
-            parentNameLabel.Text = $"{currentFamily.fatherName} & {currentFamily.motherName} {currentFamily.familyLastName}";
+            if (currentFamily.motherName == "" || currentFamily.motherName == null)
+            {
+                parentNameLabel.Text = $"{currentFamily.fatherName} {currentFamily.familyLastName}";
+            }
+            else
+            {
+                parentNameLabel.Text = $"{currentFamily.fatherName} & {currentFamily.motherName} {currentFamily.familyLastName}";
+            }
+            
             AddressTB.Text = currentFamily.familyAddress;
             CityTB.Text = currentFamily.familyCity;
             StateTB.Text = currentFamily.familyState;
