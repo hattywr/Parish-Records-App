@@ -227,5 +227,41 @@ namespace WebApplication1
 
                 return true;
         }
+
+        protected void showAllFamilies_Click(object sender, EventArgs e)
+        {
+            List<ParentOption> possibleMatches = new List<ParentOption>();
+
+            possibleMatches = connections.getAllFamiles();
+            if (possibleMatches.Count != 0)
+            {
+                parentOptionsTable.Visible = true;
+                foreach (ParentOption possibleMatch in possibleMatches)
+                {
+                    HyperLink link = new HyperLink();
+                    link.NavigateUrl = ("FamilyInfo.aspx?famID=" + possibleMatch.familyID);
+                    link.Text = possibleMatch.parentNames + " " + possibleMatch.familyName;
+
+                    TableRow row = new TableRow();
+                    row.CssClass = "content_row";
+
+                    TableCell cell1 = new TableCell();
+                    cell1.CssClass = "content_cell";
+                    cell1.ColumnSpan = 2;
+                    cell1.Controls.Add(link);
+                    row.Cells.Add(cell1);
+                    parentOptionsTable.Rows.Add(row);
+
+                }
+            }
+            else
+            {
+                // Generate JavaScript to display an alert box
+                string script = "alert('No family matches. Please try again');";
+
+                // Register the script with the page
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
+            }
+        }
     }
 }

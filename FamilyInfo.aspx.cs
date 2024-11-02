@@ -247,6 +247,23 @@ namespace WebApplication1
             row6.Cells.Add(cell12);
 
 
+            //Row 7
+            TableRow row7 = new TableRow();
+            row7.CssClass = "content_row";
+            TableCell cell13 = new TableCell();
+            cell13.CssClass = "left_content_cell";
+            cell13.Text = "Remove Child";
+            TableCell cell14 = new TableCell();
+            cell14.CssClass = "right_content_cell";
+            Button button7 = new Button();
+            button7.CssClass = "button_style";
+            button7.Text = "Remove Child";
+            button7.ID = member.childID.ToString() + "DeleteChild";
+            button7.Click += DeleteChild_Click;
+            cell14.Controls.Add(button7);
+            row7.Cells.Add(cell13);
+            row7.Cells.Add(cell14);
+
             table.Rows.Add(row);
             table.Rows.Add(row1);
             table.Rows.Add(row2);
@@ -254,6 +271,7 @@ namespace WebApplication1
             table.Rows.Add(row4);
             table.Rows.Add(row5);
             table.Rows.Add(row6);
+            table.Rows.Add(row7);
 
             childrenTablePlaceHolder.Controls.Add(table);
 
@@ -527,6 +545,17 @@ namespace WebApplication1
             {
                 // Handle exceptions
             }
+        }
+
+        protected void DeleteChild_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            string buttonId = button.ID;
+            int childId = Convert.ToInt32(buttonId.Replace("DeleteChild", ""));
+            connections.deleteChild(childId);
+            string famId = familyIDLabel.Text;
+            //reload page, should no longer have this specific child we deleted
+            Response.Redirect("FamilyInfo.aspx?famID=" + famId);
         }
 
         protected void UpdateStatus_Click(object sender, EventArgs e)
@@ -965,6 +994,15 @@ namespace WebApplication1
             }
 
             return false;
+        }
+
+        protected void RemoveFamilyButton_Click(object sender, EventArgs e)
+        {
+            //Convert ID string to int 
+            int familyID = Convert.ToInt32(familyIDLabel.Text);
+            bool success = connections.deleteFamily(familyID);
+            Response.Redirect("Default.aspx");
+
         }
     }
 }

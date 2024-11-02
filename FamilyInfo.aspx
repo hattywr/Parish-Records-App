@@ -185,6 +185,15 @@
                 </asp:TableRow>
     </asp:Table>
 
+      <asp:Table ID="DeleteFamily" runat="server" CssClass="contents_table" >
+          <asp:TableRow runat="server" CssClass="content_row">
+                <asp:TableCell runat="server" Text ="Delete Family" CssClass="left_content_cell"></asp:TableCell>
+                <asp:TableCell runat="server" ID="TableCell1" CssClass="right_content_cell">
+                <asp:Button runat="server" ID="RemoveFamilyButton" Text="Remove Family" CssClass="button_style" OnClick="RemoveFamilyButton_Click" />
+                </asp:TableCell>
+            </asp:TableRow>
+</asp:Table>
+
     <asp:Table ID="addChildTable" runat="server" CssClass="contents_table" Visible="false">
         <asp:TableRow runat="server" CssClass="table_title">
             <asp:TableCell runat="server" Text="Please enter all necessary details for the new child" ColumnSpan="2" CssClass="title_cell"></asp:TableCell>

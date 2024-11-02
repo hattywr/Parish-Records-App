@@ -112,6 +112,48 @@ namespace WebApplication1
 
         }
 
+        public List<ParentOption> getAllFamiles()
+        {
+            List<ParentOption> parentOptions = new List<ParentOption>();
+            try
+            {
+                connection.Open();
+                // get all families
+                string query = $"select * from BVMFamilies";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            //string user = reader.GetString("userName");
+                            string familyID = reader["fid"].ToString();
+                            string parentNames = reader["parents"].ToString();
+                            string parentLastName = reader["sir"].ToString();
+                            if (parentNames != null)
+                            {
+                                ParentOption option = new ParentOption(familyID, parentNames, parentLastName);
+
+                                parentOptions.Add(option);
+                            }
+
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return parentOptions;
+        }
+
         public List<ParentOption> searchLastName(string lastName)
         {
             List<ParentOption> parentOptions = new List<ParentOption>();
@@ -1270,6 +1312,102 @@ namespace WebApplication1
             
             
         }
+
+        public bool deleteFamily(int familyID)
+        {
+            bool success = false;
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+
+
+                // Delete any children associated with the family
+                string query = $"DELETE FROM BVMChildren where fid = {familyID}";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+                //Delete the family itself
+                string query2 = $"DELETE FROM BVMFamilies where fid = {familyID}";
+
+                using (SqlCommand command = new SqlCommand(query2, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        success = true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+                        success = false;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                success = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return success;
+        }
+
+        public void deleteChild(int childID)
+        {
+            try
+            {
+                // convert true or false back to 1 or 0
+                //confirmationStatus = confirmationStatus.Equals("true") ? "1" : "0";
+                connection.Open();
+
+
+                // Delete any children associated with the family
+                string query = $"DELETE FROM BVMChildren where chid = {childID}";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // update failed somehow
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
 
 
     }

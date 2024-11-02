@@ -162,6 +162,6 @@ C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\bin
 C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\bin\zh-Hant\Microsoft.Data.SqlClient.resources.dll
 C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\obj\Release\ParishRecordsAccess.csproj.AssemblyReference.cache
 C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\obj\Release\ParishRecordsAccess.csproj.CoreCompileInputs.cache
-C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\obj\Release\ParishRecordsAccess.csproj.CopyComplete
 C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\obj\Release\WebApplication1.dll
 C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\obj\Release\WebApplication1.pdb
+C:\Users\willh\OneDrive\Coding Stuff\Visual Studio Stuff\ParishRecordsAccess\obj\Release\ParishRe.53124168.Up2Date
